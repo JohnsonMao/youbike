@@ -1,0 +1,36 @@
+@import '../../asset/scss/custom_variables';
+.index_menu
+{
+  max-width: 245px;
+}
+.sign
+{
+  &__logo
+  {
+    width: 100%;
+    height: auto;
+  }
+  h1
+  {
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  h2
+  {
+    letter-spacing: 12px;
+  }
+}
+.btn
+{
+  border: 2px solid $dark;
+  border-radius: 10px;
+  color: $dark;
+  text-align: center;
+  transition: .3s;
+
+  &:hover
+  {
+    background: $dark;
+    color: $primary;
+  }
+}

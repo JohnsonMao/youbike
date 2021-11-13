@@ -1,0 +1,70 @@
+$primary:   #FED801;
+$dark:      #000;
+$light:     #FFF;
+$gray-light:#D2D2D2;
+$gray:      #7A7A7A;
+$shadow:    rgba(0, 0, 0, 0.1);
+$body-bg:   #F6F7FB;
+$body-color: $dark;
+
+$theme-colors: (
+  "primary": $primary,
+  "dark": $dark,
+  "light": $light,
+  "gray": $gray
+);
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&family=Roboto:wght@400;700&display=swap');
+
+$font-family-sans-serif: "Noto Sans TC", "Roboto", "sans-serif";
+
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .375,
+  2: $spacer * .5,
+  3: $spacer * .75,
+  4: $spacer,
+  5: $spacer * 1.125,
+  6: $spacer * 1.25,
+  7: $spacer * 1.5,
+  8: $spacer * 2
+);
+
+$enable-rfs: false;
+$font-size-base: 1rem;
+$font-sizes: (
+  1: $font-size-base / 16 * 17,
+  2: $font-size-base,
+  3: $font-size-base / 16 * 15,
+  4: $font-size-base / 16 * 14,
+  5: $font-size-base / 16 * 13,
+  6: $font-size-base / 16 * 12
+);
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 840px,
+  xl: 1020px,
+  xxl: 1200px
+);
+
+$box-shadow: 0 .25rem .25rem $shadow;
+$border-radius: 6px;
+
+$link-decoration: none;
+
+$aspect-ratios: (
+  "1x1": 100%,
+  "2x3": calc(3 / 2 * 100%),
+  "3x5": calc(500 / 333 * 100%),
+);
