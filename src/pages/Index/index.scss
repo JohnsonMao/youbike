@@ -3,23 +3,6 @@
 {
   max-width: 245px;
 }
-.sign
-{
-  &__logo
-  {
-    width: 100%;
-    height: auto;
-  }
-  h1
-  {
-    overflow:hidden;
-    white-space:nowrap;
-  }
-  h2
-  {
-    letter-spacing: 12px;
-  }
-}
 .btn
 {
   border: 2px solid $dark;

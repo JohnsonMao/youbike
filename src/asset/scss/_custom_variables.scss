@@ -33,6 +33,14 @@ $spacers: (
 
 $enable-rfs: false;
 $font-size-base: 1rem;
+
+$h1-font-size: $font-size-base / 16 * 17;
+$h2-font-size: $font-size-base;
+$h3-font-size: $font-size-base / 16 * 15;
+$h4-font-size: $font-size-base / 16 * 14;
+$h5-font-size: $font-size-base / 16 * 13;
+$h6-font-size: $font-size-base / 16 * 12;
+
 $font-sizes: (
   1: $font-size-base / 16 * 17,
   2: $font-size-base,
@@ -41,6 +49,7 @@ $font-sizes: (
   5: $font-size-base / 16 * 13,
   6: $font-size-base / 16 * 12
 );
+
 $grid-breakpoints: (
   xs: 0,
   sm: 576px,

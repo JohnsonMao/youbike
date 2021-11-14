@@ -8,3 +8,30 @@ img
 {
   object-fit: cover;
 }
+
+.header
+{
+  &__logo
+  {
+    width: 100%;
+    height: auto;
+  }
+  h1
+  {
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  h2
+  {
+    letter-spacing: 12px;
+  }
+}
+
+
+.btn--dark
+{
+  background: $dark;
+  line-height: 1;
+  border: 0;
+  color: $light;
+}

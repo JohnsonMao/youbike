@@ -1,6 +1,138 @@
 @import '../../asset/scss/custom_variables';
-.logo
+.logoSize
 {
-  width: 225px;
-  height: auto;
+  max-width: 225px;
 }
+/* 
+ * Desktop Menu Start
+ */
+.menu
+{
+  background: $light;
+  width: max-content;
+  a
+  {
+    color: $dark;
+    padding: 9px 32px;
+    background: $light;
+
+    &:hover
+    {
+      color: $dark;
+    }
+  }
+  span
+  {
+    letter-spacing: $h4-font-size;
+    margin-right: -$h4-font-size;
+  }
+  .active
+  {
+    color: $primary;
+    background: $dark;
+
+    &:hover
+    {
+      color: $primary;
+      background: $dark;  
+    }
+  }
+}
+/* 
+ * Desktop Menu End
+ */
+
+/* 
+ * Svg Active Style Start
+ */
+.active
+{
+  .bike
+  {
+    path
+    {
+      fill: $primary;
+    }
+  }
+  .parking
+  {
+    path
+    {
+      fill: $dark;
+    }
+    rect
+    {
+      fill: $primary;
+    }
+  }
+}
+/*
+ * Svg Active Style End 
+ */
+
+/*
+ * Switch Btn Start 
+ */
+.switch
+{
+  width: 106px;
+  height: 32px;
+
+  input
+  {
+    width: 0;
+    height: 0;
+  }
+}
+.slider
+{
+  cursor: pointer;
+  background: $dark;
+  transition: .3s;
+
+  &::before
+  {
+    content: '顯示車道';
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    color: $light;
+    font-size: 13px;
+    transform: translate(0, -50%);
+    transition: .3s;
+  }
+  &::after
+  {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 4px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: $light;
+    transform: translate(0, -50%);
+    transition: .3s;
+  }
+}
+input:checked
+{
+  & + .slider
+  {
+    background: $light;
+  }
+  & + .slider::before
+  {
+    content: '隱藏車道';
+    color: $dark;
+    transform: translate(60%, -50%);
+  }
+  & + .slider::after
+  {
+    background: $primary;
+    transform: translate(-300%, -50%);
+  }
+}
+/*
+ * Switch Btn End
+ */

@@ -10,17 +10,17 @@ const Nav = () => (
   <nav>
     <ul>
       <li>
-        <Link className="d-block w-100 btn fs-2 p-3 mb-7" to="station">
+        <Link to="station" className="d-block w-100 btn fs-2 p-3 mb-7">
           尋找 Youbike
         </Link>
       </li>
       <li>
-        <Link className="d-block w-100 btn fs-2 p-3 mb-7" to="shape">
+        <Link to="shape" className="d-block w-100 btn fs-2 p-3 mb-7">
           查詢自行車道
         </Link>
       </li>
       <li>
-        <Link className="d-block w-100 btn fs-2 p-3" to="tourism">
+        <Link to="tourism" className="d-block w-100 btn fs-2 p-3">
           附近景點、美食
         </Link>
       </li>
@@ -32,7 +32,7 @@ export default function Index() {
   return (
     <div className="vh-100 bg-primary d-flex justify-content-center">
       <div className="index_menu d-flex flex-column justify-content-evenly py-8">
-        <header className="sign mt-8">
+        <header className="header mt-8">
           <div className="w-50">
             <Lottie
               options={{
@@ -41,7 +41,7 @@ export default function Index() {
             />
           </div>
           <h1 className="fs-6 mb-0">
-            <Logo className="sign__logo" />
+            <Logo className="header__logo" />
             Where's YouBide
           </h1>
           <h2 className="fs-5">微笑單車．暢遊城市</h2>

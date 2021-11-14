@@ -1,0 +1,13 @@
+@import '../../asset/scss/custom_variables';
+.form
+{
+  &__group
+  {
+    max-width: 450px;
+  }
+  &__control
+  {
+    border: 0;
+    border-radius: 8px;
+  }
+}
