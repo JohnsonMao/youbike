@@ -27,11 +27,41 @@ img
   }
 }
 
-
 .btn--dark
 {
   background: $dark;
   line-height: 1;
   border: 0;
   color: $light;
+}
+
+.custom_select
+{
+  position: relative;
+  width: 144px;
+
+  select
+  {
+    display: none;
+  }
+}
+.select
+{
+  &-selected, &-items li
+  {
+    color: $light;
+    background: $dark;
+    cursor: pointer;
+  }
+  &-items
+  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    max-height: 180px;
+    overflow-y: auto;
+  }
 }

@@ -10,7 +10,7 @@ const Nav = () => (
   <nav>
     <ul>
       <li>
-        <Link to="station" className="d-block w-100 btn fs-2 p-3 mb-7">
+        <Link to="station/rent" className="d-block w-100 btn fs-2 p-3 mb-7">
           尋找 Youbike
         </Link>
       </li>

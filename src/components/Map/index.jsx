@@ -11,6 +11,7 @@ export default function CustomMap() {
   return (
     <Map
       style='mapbox://styles/mapbox/streets-v9'
+      center={[121.517055, 25.047675]}
       containerStyle={{
         position: 'absolute',
         top: '0',
@@ -21,7 +22,7 @@ export default function CustomMap() {
       }}
     >
       <Layer type='symbol' id="marker" layer={{ 'icon-image': 'marker-15'}}>
-        <Feature coordinates={[25.047675, 121.517055]} />
+        <Feature coordinates={[121.517055, 25.047675]} />
       </Layer>
     </Map>
   )
