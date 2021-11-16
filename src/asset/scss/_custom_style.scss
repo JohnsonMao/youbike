@@ -47,6 +47,12 @@ img
 }
 .select
 {
+  &-selected::after
+  {
+    content: url('../icon/dropdown.svg');
+    position: absolute;
+    right: 10px;
+  }
   &-selected, &-items li
   {
     color: $light;

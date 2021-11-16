@@ -50,23 +50,6 @@ $font-sizes: (
   6: $font-size-base / 16 * 12
 );
 
-$grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px
-);
-
-$container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 840px,
-  xl: 1020px,
-  xxl: 1200px
-);
-
 $box-shadow: 0 .25rem .25rem $shadow;
 $border-radius: 6px;
 

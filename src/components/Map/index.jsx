@@ -1,29 +1,38 @@
-import React from 'react';
-import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import React, { useRef, useEffect, useState } from "react";
+import { MapContainer, TileLayer, Marker, Popup, SVGOverlay } from "react-leaflet";
+import env from "react-dotenv";
+import 'leaflet/dist/leaflet.css'
 
-const Map = ReactMapboxGl({
-  accessToken:
-    'pk.eyJ1IjoidHV0ZWxhcnltYW8iLCJhIjoiY2t2dzgwd3o0MGJpbzJvcWM2cDBxZjIzZyJ9.492lVuarZqXx6EIan-5SxA'
-});
+// import stationSVG from "../../asset/icon/station.svg";
+import { stationSVG } from "./Icon";
+import "./map.scss";
 
-export default function CustomMap() {
+// let img = new Image(36, 50);
+// img.src = stationSVG;
+
+export default function Map() {
+  const [lng, setLng] = useState(25.047675);
+  const [lat, setLat] = useState(121.517055);
+  const [zoom, setZoom] = useState(15);
+
+  const position = [lng, lat];
+
   return (
-    <Map
-      style='mapbox://styles/mapbox/streets-v9'
-      center={[121.517055, 25.047675]}
-      containerStyle={{
-        position: 'absolute',
-        top: '0',
-        left: '0',
-        height: '100vh',
-        width: '100vw',
-        zIndex: '-1'
-      }}
-    >
-      <Layer type='symbol' id="marker" layer={{ 'icon-image': 'marker-15'}}>
-        <Feature coordinates={[121.517055, 25.047675]} />
-      </Layer>
-    </Map>
-  )
+    <MapContainer center={position} zoom={zoom} className="map-container">
+      <TileLayer
+        url={`https://api.mapbox.com/styles/v1/${env.MAP_USERNAME}/${env.MAP_STYLE_ID}/tiles/256/{z}/{x}/{y}@2x?access_token=${env.MAP_TOKEN}`}
+        attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
+      />
+      <Marker
+        position={position}
+        icon={ stationSVG }
+        title="station"
+        alt="station"
+      >
+        <Popup>
+          1
+        </Popup>
+      </Marker>
+    </MapContainer>
+  );
 }

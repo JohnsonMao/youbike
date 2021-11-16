@@ -1,11 +1,7 @@
 import ajax from "./ajax";
 
-/* 基本資料 API url */
-// const BASIC_URL = "https://gist.motc.gov.tw/gist_api/V3/Map/Basic";
-/* 觀光 API url */
+const ROOT_URL = 'https://ptx.transportdata.tw/MOTC/v2/';
 const TOURISM_URL = "https://ptx.transportdata.tw/MOTC/v2/Tourism";
-/* 城市 API */
-// export const apiCity = () => ajax(BASIC_URL + "/City");
 
 /* 預設篩選活動資料 */
 const initActivity = {
