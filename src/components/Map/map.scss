@@ -18,4 +18,15 @@
   font-weight: 900;
   font-style: italic;
   text-align: center;
+  color: $dark;
+  transition: .3s;
+}
+.return .leaflet-tooltip
+{
+  color: $primary;
+}
+.GPS
+{
+  background: $primary;
+  border-radius: 50%;
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import useGeolocation from "react-hook-geolocation";
 
 import Navbar from "../../components/Navbar";
@@ -22,14 +22,21 @@ const menu = [
 
 export default function Station() {
   const geolocation = useGeolocation();
+  const { pathname } = useLocation();
   const [type, setType] = useState(1);
-  const handleType = (e) => setType(e)
+  const handleType = (e) => setType(e);
+  console.log(geolocation)
+
   return (
-    <div>
-      <Navbar page="station" menu={menu} handleType={handleType}/>
+    <div className={pathname === '/station/rent' ? null : 'return'}>
+      <Navbar page="station" menu={menu} handleType={handleType} />
       <Search />
       <NearbyBtn />
-      {geolocation.latitude === null ? <div>loading</div> : <Map type={type} {...geolocation} />}
+      {geolocation.latitude === null ? (
+        <div>loading</div>
+      ) : (
+        <Map type={type} {...geolocation} />
+      )}
     </div>
   );
 }
