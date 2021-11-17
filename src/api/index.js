@@ -1,12 +1,14 @@
 import ajax from "./ajax";
 
-const ROOT_URL = 'https://ptx.transportdata.tw/MOTC/v2/';
+const ROOT_URL = 'https://ptx.transportdata.tw/MOTC/v2';
 const TOURISM_URL = "https://ptx.transportdata.tw/MOTC/v2/Tourism";
 
 /* 預設篩選站點資料 */
 const initBikeStation = {
   $select: [
     "StationUID",
+    "StationName",
+    "ServiceType",
     "StationPosition",
     "StationAddress"
   ]
@@ -21,15 +23,15 @@ const initBikeAvailability = {
   ]
 };
 /* 自行車站點 API */
-const apiBikeStation = (data = null, City = "Taipei") =>
-  ajax(ROOT_URL + "/Bike/Station/" + City, { ...initBikeStation, ...data });
+const apiBikeStation = (data = null) =>
+  ajax(ROOT_URL + "/Bike/Station/NearBy", { ...initBikeStation, ...data });
 /* 自行車車位 API */
-const apiBikeAvailability = (data = null, City = "Taipei") =>
-  ajax(ROOT_URL + "/Bike/Availability/" + City, { ...initBikeAvailability, ...data });
+const apiBikeAvailability = (data = null) =>
+  ajax(ROOT_URL + "/Bike/Availability/Nearby", { ...initBikeAvailability, ...data });
 /* 整合站點與車位的 API */
-export const apiBike = async (data = null, City = 'Taipei') => {
-  const { data: bikeStation } = await apiBikeStation(data, City);
-  const { data: bikeAvailability } =  await apiBikeAvailability(data, City);
+export const apiBike = async (data = null) => {
+  const { data: bikeStation } = await apiBikeStation(data);
+  const { data: bikeAvailability } =  await apiBikeAvailability(data);
   const result = [];
   bikeStation.forEach((item, index) => {
     result[index] = Object.assign(item, bikeAvailability[index])

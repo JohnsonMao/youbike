@@ -100,7 +100,7 @@
 
   &::before
   {
-    content: '顯示車道';
+    content: '顯示 1.0';
     position: absolute;
     top: 50%;
     left: 12px;
@@ -131,7 +131,7 @@ input:checked
   }
   & + .slider::before
   {
-    content: '隱藏車道';
+    content: '顯示 2.0';
     color: $dark;
     transform: translate(60%, -50%);
   }

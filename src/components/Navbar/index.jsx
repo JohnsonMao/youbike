@@ -8,7 +8,7 @@ import { ReactComponent as Bike } from "../../asset/icon/bike.svg";
 import { ReactComponent as Parking } from "../../asset/icon/parking.svg";
 import "./navbar.scss";
 
-export default function Navbar({ menu = [], type = "" }) {
+export default function Navbar({ menu = [], page = "", handleType }) {
   const [hide, setHide] = useState(true);
 
   const handleSelect = (e) => {
@@ -28,6 +28,11 @@ export default function Navbar({ menu = [], type = "" }) {
       window.removeEventListener("click", handleSelect);
     };
   }, []);
+
+  const a = (e) => {
+    e.target.checked ? handleType(2) : handleType(1)
+  }
+
   return (
     <header className="header bg-primary mb-8 py-7">
       <Container>
@@ -60,8 +65,8 @@ export default function Navbar({ menu = [], type = "" }) {
             </ul>
           </Col>
           <Col>
-            {type === "station" ? (
-              <label htmlFor="lane" className="switch ms-auto">
+            {page === "station" ? (
+              <label htmlFor="lane" className="switch ms-auto" onChange={a}>
                 <input type="checkbox" id="lane" />
                 <span className="slider rounded-pill"></span>
               </label>

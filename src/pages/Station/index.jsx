@@ -1,31 +1,35 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useState } from "react";
+import { Outlet } from "react-router-dom";
+import useGeolocation from "react-hook-geolocation";
 
-import Navbar from '../../components/Navbar';
-import Search from '../../components/Search';
-import NearbyBtn from '../../components/NearbyBtn';
-import Map from '../../components/Map';
+import Navbar from "../../components/Navbar";
+import Search from "../../components/Search";
+import NearbyBtn from "../../components/NearbyBtn";
+import Map from "../../components/Map";
 
 const menu = [
   {
-    icon: 'bike',
-    title: '租車',
-    to: 'rent'
+    icon: "bike",
+    title: "租車",
+    to: "rent",
   },
   {
-    icon: 'parking',
-    title: '還車',
-    to: 'return'
-  }
-]
+    icon: "parking",
+    title: "還車",
+    to: "return",
+  },
+];
 
 export default function Station() {
+  const geolocation = useGeolocation();
+  const [type, setType] = useState(1);
+  const handleType = (e) => setType(e)
   return (
     <div>
-      <Navbar type='station' menu={menu} />
+      <Navbar page="station" menu={menu} handleType={handleType}/>
       <Search />
       <NearbyBtn />
-      <Map />
+      {geolocation.latitude === null ? <div>loading</div> : <Map type={type} {...geolocation} />}
     </div>
-  )
+  );
 }
