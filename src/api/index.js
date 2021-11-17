@@ -3,24 +3,39 @@ import ajax from "./ajax";
 const ROOT_URL = 'https://ptx.transportdata.tw/MOTC/v2/';
 const TOURISM_URL = "https://ptx.transportdata.tw/MOTC/v2/Tourism";
 
-/* 預設篩選活動資料 */
-const initActivity = {
+/* 預設篩選站點資料 */
+const initBikeStation = {
   $select: [
-    "ID",
-    "Name",
-    "Description",
-    "Address",
-    "Location",
-    "Phone",
-    "Picture",
-    "Charge",
-    "StartTime",
-    "EndTime",
+    "StationUID",
+    "StationPosition",
+    "StationAddress"
   ]
 };
-/* 活動 API */
-export const apiActivity = (data = null, City = "") =>
-  ajax(TOURISM_URL + "/Activity/" + City, { ...initActivity, ...data });
+/* 預設篩選車位資料 */
+const initBikeAvailability = {
+  $select: [
+    "StationUID",
+    "ServiceStatus",
+    "AvailableRentBikes",
+    "AvailableReturnBikes"
+  ]
+};
+/* 自行車站點 API */
+const apiBikeStation = (data = null, City = "Taipei") =>
+  ajax(ROOT_URL + "/Bike/Station/" + City, { ...initBikeStation, ...data });
+/* 自行車車位 API */
+const apiBikeAvailability = (data = null, City = "Taipei") =>
+  ajax(ROOT_URL + "/Bike/Availability/" + City, { ...initBikeAvailability, ...data });
+/* 整合站點與車位的 API */
+export const apiBike = async (data = null, City = 'Taipei') => {
+  const { data: bikeStation } = await apiBikeStation(data, City);
+  const { data: bikeAvailability } =  await apiBikeAvailability(data, City);
+  const result = [];
+  bikeStation.forEach((item, index) => {
+    result[index] = Object.assign(item, bikeAvailability[index])
+  })
+  return result
+}
 
 /* 預設篩選餐廳資料 */
 const initRestaurant = {
@@ -58,39 +73,3 @@ const initScenicSpot = {
   $filter=contains(Name,'過濾')*/
 export const apiScenicSpot = (data = null, City = "") =>
   ajax(TOURISM_URL + "/ScenicSpot/" + City, { ...initScenicSpot, ...data });
-
-/* 預設篩選住宿資料 */
-const initHotel = {
-  $select: [
-    "ID",
-    "Name",
-    "Description",
-    "Grade",
-    "Address",
-    "Phone",
-    "Picture",
-    "Class",
-    "ServiceInfo",
-    "Spec",
-  ]
-};
-/* 住宿 API */
-export const apiHotel = (data = null, City = "") =>
-  ajax(TOURISM_URL + "/Hotel/" + City, { ...initHotel, ...data });
-
-/* 交通 API */
-/* 路線資料：RouteUID（路線識別代碼）、TaiwanTripName（台灣好行路線名稱）
- *  url?$select=RouteUID,TaiwanTripName
- */
-export const apiBusByCity = () =>
-  ajax(TOURISM_URL + "/Bus/Route/TaiwanTrip", {
-    $select: ["RouteUID", "TaiwanTripName"],
-  });
-// 預估到站資料
-export const apiBusEstimatedTime = (TaiwanTripName) =>
-  ajax(
-    TOURISM_URL + "/Bus/EstimatedTimeOfArrival/TaiwanTrip/" + TaiwanTripName
-  );
-// 動態定點資料
-export const apiBusNearStop = (TaiwanTripName) =>
-  ajax(TOURISM_URL + "/Bus/RealTimeNearStop/TaiwanTrip/" + TaiwanTripName);

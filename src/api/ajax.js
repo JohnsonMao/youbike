@@ -12,5 +12,6 @@ export default function ajax(url, data = {}) {
     url + '?' + paramStr,
     {
       headers: getAuthorizationHeader()
-    });
+    }
+  );
 }

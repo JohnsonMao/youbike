@@ -1,15 +1,39 @@
-import L from 'leaflet';
+import L from "leaflet";
 
-const stationSVG = new L.Icon({
-    iconUrl: require('../../asset/icon/station.svg').default,
-    iconRetinaUrl: require('../../asset/icon/station.svg').default,
-    iconAnchor: null,
-    popupAnchor: [0, 0],
-    shadowUrl: null,
-    shadowSize: null,
-    shadowAnchor: null,
-    iconSize: new L.Point(36, 50),
-    className: ''
+const rentStationSVG = new L.Icon({
+  iconUrl: require("../../asset/icon/rentStation.svg").default,
+  iconRetinaUrl: require("../../asset/icon/rentStation.svg").default,
+  iconAnchor: null,
+  popupAnchor: [0, 0],
+  shadowUrl: null,
+  shadowSize: null,
+  shadowAnchor: null,
+  iconSize: new L.Point(36, 50),
+  className: "",
 });
 
-export { stationSVG };
+const returnStationSVG = new L.Icon({
+  iconUrl: require("../../asset/icon/returnStation.svg").default,
+  iconRetinaUrl: require("../../asset/icon/returnStation.svg").default,
+  iconAnchor: null,
+  popupAnchor: [0, 0],
+  shadowUrl: null,
+  shadowSize: null,
+  shadowAnchor: null,
+  iconSize: new L.Point(36, 50),
+  className: "",
+});
+
+const emptyStationSVG = new L.Icon({
+  iconUrl: require("../../asset/icon/emptyStation.svg").default,
+  iconRetinaUrl: require("../../asset/icon/emptyStation.svg").default,
+  iconAnchor: null,
+  popupAnchor: [0, 0],
+  shadowUrl: null,
+  shadowSize: null,
+  shadowAnchor: null,
+  iconSize: new L.Point(36, 50),
+  className: "",
+});
+
+export { rentStationSVG, returnStationSVG, emptyStationSVG };

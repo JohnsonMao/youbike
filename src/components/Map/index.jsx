@@ -1,14 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup, SVGOverlay } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
 import env from "react-dotenv";
-import 'leaflet/dist/leaflet.css'
+import 'leaflet/dist/leaflet.css';
 
-// import stationSVG from "../../asset/icon/station.svg";
-import { stationSVG } from "./Icon";
+import { apiBike } from "../../api";
+import { rentStationSVG, returnStationSVG, emptyStationSVG } from "./Icon";
 import "./map.scss";
-
-// let img = new Image(36, 50);
-// img.src = stationSVG;
 
 export default function Map() {
   const [lng, setLng] = useState(25.047675);
@@ -25,13 +22,13 @@ export default function Map() {
       />
       <Marker
         position={position}
-        icon={ stationSVG }
+        icon={ rentStationSVG }
         title="station"
         alt="station"
       >
-        <Popup>
-          1
-        </Popup>
+        <Tooltip offset={[-1, -8]} direction="center" opacity={1} permanent>
+          3
+        </Tooltip>
       </Marker>
     </MapContainer>
   );
