@@ -11,6 +11,7 @@ const GPS_SVG = new L.Icon({
   iconSize: new L.Point(24, 24),
   className: "GPS",
 });
+
 const rentStationSVG = new L.Icon({
   iconUrl: require("../../asset/icon/rentStation.svg").default,
   iconRetinaUrl: require("../../asset/icon/rentStation.svg").default,

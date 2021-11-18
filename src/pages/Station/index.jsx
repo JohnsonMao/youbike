@@ -23,19 +23,21 @@ const menu = [
 export default function Station() {
   const geolocation = useGeolocation();
   const { pathname } = useLocation();
+  const [map, setMap] = useState(null);
+  const handleMap = (e) => setMap(e);
   const [type, setType] = useState(1);
   const handleType = (e) => setType(e);
-  console.log(geolocation)
+  const zoom = 16
 
   return (
     <div className={pathname === '/station/rent' ? null : 'return'}>
       <Navbar page="station" menu={menu} handleType={handleType} />
       <Search />
-      <NearbyBtn />
+      {map ? <NearbyBtn map={map} zoom={zoom} {...geolocation} /> : null}
       {geolocation.latitude === null ? (
         <div>loading</div>
       ) : (
-        <Map type={type} {...geolocation} />
+        <Map type={type} setMap={handleMap} zoom={zoom} {...geolocation} />
       )}
     </div>
   );
