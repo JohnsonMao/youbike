@@ -1,11 +1,11 @@
 import { useEffect, useState, useCallback, useMemo } from "react";
 
-import { apiBike } from "../api";
+import { apiBike, apiCyclingShape } from "../api";
 
 export default function useHttp(
-  nearby = "",
-  type = "bike",
   city = "",
+  type = "shape",
+  nearby = "",
   count = 100,
   page = 1
 ) {
@@ -22,7 +22,7 @@ export default function useHttp(
   if (skip < newSkip) setSkip(newSkip);
 
   /* 頁數基礎參數 */
-  const api_param = useMemo(() => {
+  const page_param = useMemo(() => {
     return {
       $top: newCount,
       $skip: count * skip,
@@ -43,6 +43,12 @@ export default function useHttp(
           const result = await apiBike(nearby_param);
           setData(result);
           break;
+        case "shape":
+          console.log(city)
+          if (!city) break;
+          const { data } = await apiCyclingShape(page_param ,city);
+          setData(data);
+          break
         default:
           break;
       }
@@ -50,7 +56,7 @@ export default function useHttp(
     } catch (error) {
       setError(true);
     }
-  }, [nearby_param, type]);
+  }, [type, city, nearby_param, page_param]);
 
   useEffect(() => {
     setData([]);

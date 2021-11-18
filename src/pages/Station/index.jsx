@@ -6,6 +6,7 @@ import Navbar from "../../components/Navbar";
 import Search from "../../components/Search";
 import NearbyBtn from "../../components/NearbyBtn";
 import Map from "../../components/Map";
+import Loading from "../../components/Loading";
 import { getSearchVal } from "../../utils";
 
 const menu = [
@@ -41,7 +42,7 @@ export default function Station() {
       <Search />
       {map ? <NearbyBtn map={map} zoom={zoom} {...geolocation} /> : null}
       {geolocation.latitude === null ? (
-        <div>loading</div>
+        <Loading />
       ) : (
         <Map
           type={type}

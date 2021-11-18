@@ -39,6 +39,21 @@ export const apiBike = async (data = null) => {
   return result
 }
 
+const initCyclingShape = {
+  $select: [
+    "RouteName",
+    "Town",
+    "RoadSectionStart",
+    "RoadSectionEnd",
+    "Direction",
+    "CyclingLength",
+    "Geometry"
+  ]
+};
+/* 自行車道路 API */
+export const apiCyclingShape = (data = null, City = 'Taipei') =>
+  ajax(ROOT_URL + "/Cycling/Shape/" + City, { ...initCyclingShape, ...data });
+
 /* 預設篩選餐廳資料 */
 const initRestaurant = {
   $select: [

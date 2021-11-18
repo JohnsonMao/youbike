@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Container ,Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 import { cityList } from "../../utils/cityList";
 import { ReactComponent as Logo } from "../../asset/icon/logo.svg";
@@ -9,7 +9,12 @@ import { ReactComponent as Parking } from "../../asset/icon/parking.svg";
 import { getCityName } from "../../utils";
 import "./navbar.scss";
 
-export default function Navbar({ menu = [], page = "", handleType, searchParam }) {
+export default function Navbar({
+  menu = [],
+  page = "",
+  handleType,
+  searchParam,
+}) {
   const [hide, setHide] = useState(true);
   const handleSelect = (e) => {
     const { node } = e.target.dataset;
@@ -30,10 +35,10 @@ export default function Navbar({ menu = [], page = "", handleType, searchParam }
   }, []);
 
   const a = (e) => {
-    e.target.checked ? handleType(2) : handleType(1)
-  }
+    e.target.checked ? handleType(2) : handleType(1);
+  };
 
-  const cityName = getCityName(cityList, searchParam)
+  const cityName = getCityName(cityList, searchParam);
 
   return (
     <header className="header bg-primary mb-8 py-7">
@@ -86,22 +91,31 @@ export default function Navbar({ menu = [], page = "", handleType, searchParam }
                   className="select-selected px-4 py-1 rounded-pill"
                   data-node="select"
                 >
-                  {cityName || '選擇縣市'}
+                  {cityName || "選擇縣市"}
                 </div>
                 <ul className={`select-items ${hide ? "d-none" : null}`}>
-                  <li>
-                    <Link to={`?city=${searchParam}`} className="d-block px-4 py-1">
-                      {cityName}
-                    </Link>
-                  </li>
-                  {cityList.map((item) => (
-                    item.City === searchParam ? null :
-                    <li key={item.City}>
-                      <Link to={`?city=${item.City}`} className="d-block px-4 py-1">
-                        {item.CityName}
+                  {searchParam ? (
+                    <li>
+                      <Link
+                        to={`?city=${searchParam}`}
+                        className="d-block px-4 py-1"
+                      >
+                        {cityName}
                       </Link>
                     </li>
-                  ))}
+                  ) : null}
+                  {cityList.map((item) =>
+                    item.City === searchParam ? null : (
+                      <li key={item.City}>
+                        <Link
+                          to={`?city=${item.City}`}
+                          className="d-block px-4 py-1"
+                        >
+                          {item.CityName}
+                        </Link>
+                      </li>
+                    )
+                  )}
                 </ul>
               </div>
             )}

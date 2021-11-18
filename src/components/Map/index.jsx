@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
 import env from "react-dotenv";
 import "leaflet/dist/leaflet.css";
 
+import Loading from "../Loading";
 import useHttp from "../../utils/useHttp";
 import {
   GPS_SVG,
@@ -15,7 +15,7 @@ import "./map.scss";
 
 const StationMarker = ({ nearby, type, searchParam }) => {
   
-  const { data, loading } = useHttp(nearby);
+  const { data, loading } = useHttp('', 'bike' ,nearby);
   const bike_data = data.filter((station) => station.ServiceType === type);
   
   return (
