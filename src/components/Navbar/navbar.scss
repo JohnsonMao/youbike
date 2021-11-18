@@ -8,13 +8,15 @@
  */
 .menu
 {
+  position: relative;
   background: $light;
   width: max-content;
   a
   {
+    position: relative;
     color: $dark;
     padding: 9px 32px;
-    background: $light;
+    z-index: 1;
 
     &:hover
     {
@@ -26,15 +28,35 @@
     letter-spacing: $h4-font-size;
     margin-right: -$h4-font-size;
   }
-  .active
+  &::before
   {
-    color: $primary;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
     background: $dark;
-
-    &:hover
+    border-radius: 21px;
+    transition: .3s;
+  }
+  &.rent
+  {
+    .bike
     {
       color: $primary;
-      background: $dark;  
+    }
+  }
+  &.return
+  {
+    .parking
+    {
+      background: transparent;
+      color: $primary;
+    }
+    &::before
+    {
+      transform: translateX(100%);
     }
   }
 }
@@ -45,7 +67,7 @@
 /* 
  * Svg Active Style Start
  */
-.active
+.rent
 {
   .bike
   {
@@ -54,6 +76,9 @@
       fill: $primary;
     }
   }
+}
+.return
+{
   .parking
   {
     path

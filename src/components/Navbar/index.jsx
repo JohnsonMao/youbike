@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Container ,Row, Col } from "react-bootstrap";
 
 import { cityList } from "../../utils/cityList";
 import { ReactComponent as Logo } from "../../asset/icon/logo.svg";
 import { ReactComponent as Bike } from "../../asset/icon/bike.svg";
 import { ReactComponent as Parking } from "../../asset/icon/parking.svg";
+import { getCityName } from "../../utils";
 import "./navbar.scss";
 
-export default function Navbar({ menu = [], page = "", handleType }) {
+export default function Navbar({ menu = [], page = "", handleType, searchParam }) {
   const [hide, setHide] = useState(true);
-
   const handleSelect = (e) => {
     const { node } = e.target.dataset;
     switch (node) {
@@ -33,6 +33,8 @@ export default function Navbar({ menu = [], page = "", handleType }) {
     e.target.checked ? handleType(2) : handleType(1)
   }
 
+  const cityName = getCityName(cityList, searchParam)
+
   return (
     <header className="header bg-primary mb-8 py-7">
       <Container>
@@ -46,12 +48,12 @@ export default function Navbar({ menu = [], page = "", handleType }) {
             </h1>
           </Col>
           <Col>
-            <ul className="d-flex menu rounded-pill mx-auto">
+            <ul className={`d-flex menu rounded-pill mx-auto ${searchParam}`}>
               {menu.map((item) => (
                 <li key={item.to}>
-                  <NavLink
-                    to={item.to}
-                    className="d-flex align-items-end rounded-pill fs-4"
+                  <Link
+                    to={`?type=${item.to}`}
+                    className={`d-flex align-items-end rounded-pill fs-4 ${item.icon}`}
                   >
                     {item.icon === "bike" ? (
                       <Bike className="bike me-2" />
@@ -59,7 +61,7 @@ export default function Navbar({ menu = [], page = "", handleType }) {
                       <Parking className="parking me-2" />
                     )}
                     <span>{item.title}</span>
-                  </NavLink>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -84,12 +86,20 @@ export default function Navbar({ menu = [], page = "", handleType }) {
                   className="select-selected px-4 py-1 rounded-pill"
                   data-node="select"
                 >
-                  選擇縣市
+                  {cityName || '選擇縣市'}
                 </div>
                 <ul className={`select-items ${hide ? "d-none" : null}`}>
+                  <li>
+                    <Link to={`?city=${searchParam}`} className="d-block px-4 py-1">
+                      {cityName}
+                    </Link>
+                  </li>
                   {cityList.map((item) => (
-                    <li key={item.City} value={item.City} className="px-4 py-1">
-                      {item.CityName}
+                    item.City === searchParam ? null :
+                    <li key={item.City}>
+                      <Link to={`?city=${item.City}`} className="d-block px-4 py-1">
+                        {item.CityName}
+                      </Link>
                     </li>
                   ))}
                 </ul>

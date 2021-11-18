@@ -13,8 +13,7 @@ import {
 } from "./Icon";
 import "./map.scss";
 
-const StationMarker = ({ nearby, type }) => {
-  const { pathname } = useLocation();
+const StationMarker = ({ nearby, type, searchParam }) => {
   
   const { data, loading } = useHttp(nearby);
   const bike_data = data.filter((station) => station.ServiceType === type);
@@ -29,11 +28,11 @@ const StationMarker = ({ nearby, type }) => {
             item.StationPosition.PositionLon,
           ]}
           icon={
-            item.AvailableRentBikes === 0 && pathname === "/station/rent"
+            item.AvailableRentBikes === 0 &&  searchParam === "rent"
               ? emptyStationSVG
-              : item.AvailableReturnBikes === 0 && pathname === "/station/return"
+              : item.AvailableReturnBikes === 0 && searchParam === "return"
               ? emptyStationSVG
-              : pathname === "/station/rent"
+              : searchParam === "rent"
               ? rentStationSVG
               : returnStationSVG
           }
@@ -41,7 +40,7 @@ const StationMarker = ({ nearby, type }) => {
           alt={item.StationName.Zh_tw}
         >
           <Tooltip offset={[-1, -8]} direction="center" opacity={1} permanent className={item.AvailableReturnBikes === 0 ? 'text-dark' : null}>
-            {pathname === "/station/rent"
+            {searchParam === "rent"
               ? item.AvailableRentBikes.toString()
               : item.AvailableReturnBikes.toString()}
           </Tooltip>
@@ -51,7 +50,7 @@ const StationMarker = ({ nearby, type }) => {
   );
 };
 
-export default function Map({ latitude, longitude, type, setMap, zoom }) {
+export default function Map({ latitude, longitude, type, setMap, zoom, searchParam }) {
   const [position, setPosition] = useState([latitude, longitude]);
   const [nearby, setNearby] = useState(`nearby(${latitude},${longitude},1000)`);
 
@@ -73,7 +72,7 @@ export default function Map({ latitude, longitude, type, setMap, zoom }) {
         alt="目前的位置"
       >
       </Marker>
-      <StationMarker nearby={nearby} type={type} />
+      <StationMarker nearby={nearby} type={type} searchParam={searchParam} />
     </MapContainer>
   );
 }
