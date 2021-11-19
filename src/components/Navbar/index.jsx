@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -16,7 +16,7 @@ export default function Navbar({
   searchParam,
 }) {
   const [hide, setHide] = useState(true);
-  const handleSelect = (e) => {
+  const handleSelect = useCallback((e) => {
     const { node } = e.target.dataset;
     switch (node) {
       case "select":
@@ -25,14 +25,14 @@ export default function Navbar({
       default:
         setHide(true);
     }
-  };
+  }, [setHide, hide]);
 
   useEffect(() => {
     window.addEventListener("click", handleSelect);
     return () => {
       window.removeEventListener("click", handleSelect);
     };
-  }, []);
+  }, [handleSelect]);
 
   const a = (e) => {
     e.target.checked ? handleType(2) : handleType(1);

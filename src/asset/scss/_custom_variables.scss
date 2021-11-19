@@ -34,20 +34,20 @@ $spacers: (
 $enable-rfs: false;
 $font-size-base: 1rem;
 
-$h1-font-size: calc($font-size-base / 16 * 17);
+$h1-font-size: 17px;
 $h2-font-size: $font-size-base;
-$h3-font-size: calc($font-size-base / 16 * 15);
-$h4-font-size: calc($font-size-base / 16 * 14);
-$h5-font-size: calc($font-size-base / 16 * 13);
-$h6-font-size: calc($font-size-base / 16 * 12);
+$h3-font-size: 15px;
+$h4-font-size: 14px;
+$h5-font-size: 13px;
+$h6-font-size: 12px;
 
 $font-sizes: (
-  1: $font-size-base / 16 * 17,
+  1: 17px,
   2: $font-size-base,
-  3: $font-size-base / 16 * 15,
-  4: $font-size-base / 16 * 14,
-  5: $font-size-base / 16 * 13,
-  6: $font-size-base / 16 * 12
+  3: 15px,
+  4: 14px,
+  5: 13px,
+  6: 12px
 );
 
 $box-shadow: 0 .25rem .25rem $shadow;
