@@ -1,6 +1,7 @@
 {
   "name": "youbike",
   "version": "0.1.0",
+  "homepage": "https://johnsonmao.github.io/youbike",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -8,6 +9,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.24.0",
     "bootstrap": "5.1.3",
+    "gh-pages": "^3.2.3",
     "jssha": "^3.2.0",
     "leaflet": "^1.7.1",
     "lottie-react-web": "^2.2.2",
@@ -23,6 +25,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-dotenv && react-scripts start",
     "build": "react-dotenv && react-scripts build",
     "serve": "react-dotenv && serve build",
@@ -36,9 +40,9 @@
     ]
   },
   "browserslist": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
   ],
   "devDependencies": {
     "sass": "^1.43.4"

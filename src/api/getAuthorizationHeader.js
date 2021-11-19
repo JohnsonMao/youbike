@@ -1,9 +1,8 @@
-import env from 'react-dotenv';
 import jsSHA from "jssha/dist/sha1";
 
 export default function getAuthorizationHeader() {
-    let AppID = env.APP_ID;
-    let AppKey = env.APP_KEY;
+    let AppID = process.env.REACT_APP_TDX_ID;
+    let AppKey = process.env.REACT_APP_TDX_KEY;
     let GMTString = new Date().toGMTString();
     
     let ShaObj = new jsSHA('SHA-1', 'TEXT', {
