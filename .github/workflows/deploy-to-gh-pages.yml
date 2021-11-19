@@ -12,7 +12,7 @@ jobs:
 
       - name: Install and Build 🔧
         run: |
-          yarn install
+          yarn
           yarn build
         env:
           REACT_APP_TDX_ID: ${{ secrets.REACT_APP_TDX_ID }}
