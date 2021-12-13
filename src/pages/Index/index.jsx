@@ -10,7 +10,10 @@ const Nav = () => (
   <nav>
     <ul>
       <li>
-        <Link to="station?type=rent" className="d-block w-100 btn fs-2 p-3 mb-7">
+        <Link
+          to="station?type=rent"
+          className="d-block w-100 btn fs-2 p-3 mb-7"
+        >
           尋找 Youbike
         </Link>
       </li>
@@ -48,7 +51,24 @@ export default function Index() {
         </header>
         <Nav />
         <span className="position-absolute bottom-0 end-0 fs-6 px-8 py-6">
-          Where’s YouBike　© Code: Alex　/　Design: KT
+          Where’s YouBike　© Code:{" "}
+          <a
+            href="https://github.com/JohnsonMao/youbike"
+            target="_blank"
+            className="text-dark"
+            rel="noreferrer"
+          >
+            Mao
+          </a>
+          　/　Design:{" "}
+          <a
+            href="https://www.behance.net/gallery/131133281/YouBike-Map-Project"
+            target="_blank"
+            className="text-dark"
+            rel="noreferrer"
+          >
+            KT
+          </a>
         </span>
       </div>
     </div>
