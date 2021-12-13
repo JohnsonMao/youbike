@@ -2,18 +2,21 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import { cityList } from "../../utils/cityList";
+import Loading from "../Loading";
 import useHttp from "../../utils/useHttp";
 import { getCityName } from "../../utils";
-import { ReactComponent as GPS_s } from "../../asset/icon/GPS_s.svg";
+import { ReactComponent as GPS } from "../../asset/icon/GPS_s.svg";
 
 export default function CardList({ searchParam }) {
-  const { data, loading, error } = useHttp(searchParam);
+  const { data, loading } = useHttp(searchParam);
   const cityName = getCityName(cityList, searchParam);
   console.log(data);
 
   return (
     <Container>
-      {searchParam ? (
+      {loading ? (
+        <Loading />
+      ) : searchParam ? (
         <Row xs={1} md={2} xl={3} as="ul" className="g-2">
           {data.map((item) => {
             const { Direction, CyclingLength } = item;
@@ -30,13 +33,13 @@ export default function CardList({ searchParam }) {
                   <div className="d-flex justify-content-between">
                     <span className="fs-5 text-gray">
                       {Direction && CyclingLength
-                        ? Direction + " " + (CyclingLength / 1000) + " 公里"
+                        ? Direction + " " + CyclingLength / 1000 + " 公里"
                         : !Direction && CyclingLength
-                        ? "總長 " + (CyclingLength / 1000) + " 公里"
+                        ? "總長 " + CyclingLength / 1000 + " 公里"
                         : "未提供"}
                     </span>
                     <span className="fs-5 text-gray d-flex align-items-center">
-                      <GPS_s />
+                      <GPS />
                       {cityName} {town}
                     </span>
                   </div>

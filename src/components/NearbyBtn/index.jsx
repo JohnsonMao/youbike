@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback } from "react";
 
 import { ReactComponent as GPS } from "../../asset/icon/GPS.svg";
 
