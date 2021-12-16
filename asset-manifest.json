@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/youbike/static/css/main.1fcfcee0.chunk.css",
+    "main.js": "/youbike/static/js/main.f837d2eb.chunk.js",
+    "main.js.map": "/youbike/static/js/main.f837d2eb.chunk.js.map",
+    "runtime-main.js": "/youbike/static/js/runtime-main.71b0d08e.js",
+    "runtime-main.js.map": "/youbike/static/js/runtime-main.71b0d08e.js.map",
+    "static/css/2.68ba508b.chunk.css": "/youbike/static/css/2.68ba508b.chunk.css",
+    "static/js/2.385cb53b.chunk.js": "/youbike/static/js/2.385cb53b.chunk.js",
+    "static/js/2.385cb53b.chunk.js.map": "/youbike/static/js/2.385cb53b.chunk.js.map",
+    "index.html": "/youbike/index.html",
+    "static/css/2.68ba508b.chunk.css.map": "/youbike/static/css/2.68ba508b.chunk.css.map",
+    "static/css/main.1fcfcee0.chunk.css.map": "/youbike/static/css/main.1fcfcee0.chunk.css.map",
+    "static/js/2.385cb53b.chunk.js.LICENSE.txt": "/youbike/static/js/2.385cb53b.chunk.js.LICENSE.txt",
+    "static/media/GPS.47d2b0be.svg": "/youbike/static/media/GPS.47d2b0be.svg",
+    "static/media/GPS_s.a98a6aa0.svg": "/youbike/static/media/GPS_s.a98a6aa0.svg",
+    "static/media/bike.d21024cb.svg": "/youbike/static/media/bike.d21024cb.svg",
+    "static/media/style.scss": "/youbike/static/media/dropdown.19966fac.svg",
+    "static/media/emptyStation.svg": "/youbike/static/media/emptyStation.7c82746d.svg",
+    "static/media/logo.5b86f656.svg": "/youbike/static/media/logo.5b86f656.svg",
+    "static/media/parking.5f193d3b.svg": "/youbike/static/media/parking.5f193d3b.svg",
+    "static/media/rentStation.svg": "/youbike/static/media/rentStation.61fc53f5.svg",
+    "static/media/returnStation.svg": "/youbike/static/media/returnStation.72484127.svg",
+    "static/media/search.ec78554a.svg": "/youbike/static/media/search.ec78554a.svg",
+    "static/media/youbike_GPS.svg": "/youbike/static/media/youbike_GPS.3ccda339.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.71b0d08e.js",
+    "static/css/2.68ba508b.chunk.css",
+    "static/js/2.385cb53b.chunk.js",
+    "static/css/main.1fcfcee0.chunk.css",
+    "static/js/main.f837d2eb.chunk.js"
+  ]
+}
