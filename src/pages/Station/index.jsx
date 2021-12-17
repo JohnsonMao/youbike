@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import useGeolocation from "react-hook-geolocation";
 
-import Navbar from "../../components/Navbar";
+import HeaderNavbar from "../../components/HeaderNavbar";
+import FooterNavbar from "../../components/FooterNavbar";
 import Search from "../../components/Search";
 import NearbyBtn from "../../components/NearbyBtn";
 import Map from "../../components/Map";
@@ -33,7 +34,7 @@ export default function Station() {
   const searchParam = getSearchVal(search, "type");
   return (
     <div className={searchParam === "rent" ? null : "dark"}>
-      <Navbar
+      <HeaderNavbar
         page="station"
         menu={menu}
         handleType={handleType}
@@ -52,6 +53,12 @@ export default function Station() {
           {...geolocation}
         />
       )}
+      <FooterNavbar
+        page="station"
+        menu={menu}
+        handleType={handleType}
+        searchParam={searchParam}
+      />
     </div>
   );
 }

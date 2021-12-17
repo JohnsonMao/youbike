@@ -7,9 +7,9 @@ import { ReactComponent as Logo } from "../../asset/icon/logo.svg";
 import { ReactComponent as Bike } from "../../asset/icon/bike.svg";
 import { ReactComponent as Parking } from "../../asset/icon/parking.svg";
 import { getCityName } from "../../utils";
-import "./navbar.scss";
+import "./headerNavbar.scss";
 
-export default function Navbar({
+export default function HeaderNavbar({
   menu = [],
   page = "",
   handleType,
@@ -34,7 +34,7 @@ export default function Navbar({
     };
   }, [handleSelect]);
 
-  const a = (e) => {
+  const toggleType = (e) => {
     e.target.checked ? handleType(2) : handleType(1);
   };
 
@@ -52,7 +52,7 @@ export default function Navbar({
               </Link>
             </h1>
           </Col>
-          <Col>
+          <Col className="d-none d-lg-block">
             <ul className={`d-flex menu rounded-pill mx-auto ${searchParam}`}>
               {menu.map((item) => (
                 <li key={item.to}>
@@ -73,7 +73,7 @@ export default function Navbar({
           </Col>
           <Col>
             {page === "station" ? (
-              <label htmlFor="lane" className="switch ms-auto" onChange={a}>
+              <label htmlFor="lane" className="switch ms-auto" onChange={toggleType}>
                 <input type="checkbox" id="lane" />
                 <span className="slider rounded-pill"></span>
               </label>
@@ -88,12 +88,12 @@ export default function Navbar({
                   ))}
                 </select>
                 <div
-                  className="select-selected px-4 py-1 rounded-pill"
+                  className="select-selected-dark px-4 py-1 rounded-pill"
                   data-node="select"
                 >
                   {cityName || "選擇縣市"}
                 </div>
-                <ul className={`select-items ${hide ? "d-none" : null}`}>
+                <ul className={`select-items select-items-dark shadow ${hide ? "d-none" : null}`}>
                   {searchParam ? (
                     <li>
                       <Link

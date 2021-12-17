@@ -55,9 +55,26 @@ img
   }
   &-selected, &-items li
   {
+    color: $dark;
+    background: $light;
+    cursor: pointer;
+
+    &:hover
+    {
+      background: $primary;
+    }
+  }
+  &-selected-dark, &-items-dark li
+  {
     color: $light;
     background: $dark;
     cursor: pointer;
+
+  }
+  &-items-dark a:hover
+  {
+    color: $dark;
+    background: $primary;
   }
   &-items
   {
@@ -65,9 +82,14 @@ img
     top: 0;
     left: 0;
     right: 0;
-    border-radius: 18px;
+    border-radius: 4px;
     overflow: hidden;
     max-height: 180px;
     overflow-y: auto;
+
+    &-dark
+    {
+      border-radius: 18px;
+    }
   }
 }

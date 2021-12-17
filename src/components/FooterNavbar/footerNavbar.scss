@@ -1,0 +1,39 @@
+@import '../../asset/scss/custom_variables';
+
+.nav 
+{
+  a
+  {
+    color: $light;
+
+    &.bike path
+    {
+      fill: $light;
+    }
+
+    &.parking path
+    {
+      fill: $primary;
+    }
+
+    rect
+    {
+      fill: $light;
+    }
+
+    &.active
+    {
+      color: $dark;
+      
+      &.bike path
+      {
+        fill: $dark;
+      }
+
+      &.parking rect
+      {
+        fill: $dark;
+      }
+    }
+  }
+}

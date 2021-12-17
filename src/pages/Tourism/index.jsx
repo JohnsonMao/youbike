@@ -1,12 +1,12 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 
-import Navbar from '../../components/Navbar';
+import HeaderNavbar from '../../components/HeaderNavbar';
 
 export default function Tourism() {
   return (
     <>
-      <Navbar page="tourism" />
+      <HeaderNavbar page="tourism" />
       <Container>
         此功能尚未實作
       </Container>

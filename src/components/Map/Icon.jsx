@@ -9,7 +9,7 @@ const GPS_SVG = new L.Icon({
   shadowSize: null,
   shadowAnchor: null,
   iconSize: new L.Point(24, 24),
-  className: "GPS",
+  className: "GPS animation-radar",
 });
 
 const rentStationSVG = new L.Icon({
