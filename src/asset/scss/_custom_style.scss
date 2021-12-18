@@ -53,9 +53,16 @@ img
     position: absolute;
     right: 10px;
   }
+  
+  &-selected-dark::after
+  {
+    content: url('../icon/dropdown-white.svg');
+    position: absolute;
+    right: 10px;
+  }
+
   &-selected, &-items li
   {
-    color: $dark;
     background: $light;
     cursor: pointer;
 
@@ -91,5 +98,59 @@ img
     {
       border-radius: 18px;
     }
+  }
+}
+
+.animation-bumps
+{
+  animation: bumps 2s infinite;
+}
+
+.stone
+{
+  position: relative;
+
+  &::before
+  {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: $dark;
+    animation: move 2s infinite linear;
+  }
+}
+
+@keyframes bumps 
+{
+  
+  0%, 55%, 65%, 85%, 95%, 100%
+  {
+    transform: translateY(2px) rotate(0);
+  }
+  60%
+  {
+    transform: translateY(2px) rotate(-2deg);
+  }
+  90%
+  {
+    transform: translateY(2px) rotate(2deg);
+  }
+}
+
+@keyframes move
+{
+  
+  0%
+  {
+    right: 0;
+    transform: translateY(2px);
+  }
+  100%
+  {
+    right: 100%;
+    transform: translateY(2px);
   }
 }

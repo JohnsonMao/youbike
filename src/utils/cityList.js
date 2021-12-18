@@ -24,6 +24,7 @@ export const cityList = [
 export const bikeCityList = [
     { CityName: "臺北市", CityCode: "TPE", City: "Taipei" },
     { CityName: "新北市", CityCode: "NWT", City: "NewTaipei" },
+    { CityName: "新竹市", CityCode: "HSZ", City: "Hsinchu" },
     { CityName: "桃園市", CityCode: "TAO", City: "Taoyuan" },
     { CityName: "苗栗縣", CityCode: "MIA", City: "MiaoliCounty" },
     { CityName: "臺中市", CityCode: "TXG", City: "Taichung" },
@@ -32,5 +33,4 @@ export const bikeCityList = [
     { CityName: "高雄市", CityCode: "KHH", City: "Kaohsiung" },
     { CityName: "屏東縣", CityCode: "PIF", City: "PingtungCounty" },
     { CityName: "金門縣", CityCode: "KIN", City: "KinmenCounty" },
-    { CityName: "新竹市", CityCode: "HSZ", City: "Hsinchu" },
 ]

@@ -31,16 +31,19 @@ export default function Station() {
   const [type, setType] = useState(1);
   const handleType = (e) => setType(e);
   const zoom = 16;
-  const searchParam = getSearchVal(search, "type");
+  const searchType = getSearchVal(search, "type");
+  const searchCity = getSearchVal(search, "city");
+  
   return (
-    <div className={searchParam === "rent" ? null : "dark"}>
+    <div className={searchType === "rent" ? null : "dark"}>
       <HeaderNavbar
         page="station"
         menu={menu}
         handleType={handleType}
-        searchParam={searchParam}
+        searchParam={searchType}
+        searchCity={searchCity}
       />
-      <Search />
+      <Search searchType={searchType} searchCity={searchCity} />
       {map ? <NearbyBtn map={map} zoom={zoom} {...geolocation} /> : null}
       {geolocation.latitude === null ? (
         <Loading />
@@ -49,7 +52,7 @@ export default function Station() {
           type={type}
           setMap={handleMap}
           zoom={zoom}
-          searchParam={searchParam}
+          searchParam={searchType}
           {...geolocation}
         />
       )}
@@ -57,7 +60,7 @@ export default function Station() {
         page="station"
         menu={menu}
         handleType={handleType}
-        searchParam={searchParam}
+        searchParam={searchType}
       />
     </div>
   );

@@ -6,42 +6,46 @@ import youbike from "../../asset/icon/youbike.json";
 import { ReactComponent as Logo } from "../../asset/icon/logo.svg";
 import "./index.scss";
 
-const Nav = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link
-          to="station?type=rent"
-          className="d-block w-100 btn fs-2 p-3 mb-7"
-        >
-          尋找 Youbike
-        </Link>
-      </li>
-      <li>
-        <Link to="shape" className="d-block w-100 btn fs-2 p-3 mb-7">
-          查詢自行車道
-        </Link>
-      </li>
-      <li>
-        <Link to="tourism" className="d-block w-100 btn fs-2 p-3">
-          附近景點、美食
-        </Link>
-      </li>
-    </ul>
-  </nav>
-);
+const Nav = () => {
+  return (
+    <nav>
+      <ul>
+        <li>
+          <Link
+            to="station?type=rent&city=Taipei"
+            className="d-block w-100 btn fs-2 p-3 mb-7"
+          >
+            尋找 Youbike
+          </Link>
+        </li>
+        <li>
+          <Link to="shape" className="d-block w-100 btn fs-2 p-3 mb-7">
+            查詢自行車道
+          </Link>
+        </li>
+        <li>
+          <Link to="tourism" className="d-block w-100 btn fs-2 p-3">
+            附近景點、美食
+          </Link>
+        </li>
+      </ul>
+    </nav>
+  );
+};
 
 export default function Index() {
   return (
     <div className="vh-100 bg-primary d-flex justify-content-center">
       <div className="index_menu d-flex flex-column justify-content-evenly py-8">
         <header className="header mt-8">
-          <div className="w-50">
-            <Lottie
-              options={{
-                animationData: youbike,
-              }}
-            />
+          <div className="border-bottom border-dark border-3 mb-2 stone">
+            <div className="w-50 animation-bumps">
+              <Lottie
+                options={{
+                  animationData: youbike,
+                }}
+              />
+            </div>
           </div>
           <h1 className="fs-6 mb-0">
             <Logo className="header__logo" />

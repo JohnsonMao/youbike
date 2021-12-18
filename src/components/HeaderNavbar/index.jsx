@@ -14,6 +14,7 @@ export default function HeaderNavbar({
   page = "",
   handleType,
   searchParam,
+  searchCity
 }) {
   const [hide, setHide] = useState(true);
   const handleSelect = useCallback((e) => {
@@ -41,7 +42,7 @@ export default function HeaderNavbar({
   const cityName = getCityName(cityList, searchParam);
 
   return (
-    <header className="header bg-primary mb-8 py-7">
+    <header className="header bg-primary mb-8 py-3 shadow">
       <Container>
         <Row className="align-items-center">
           <Col>
@@ -57,7 +58,7 @@ export default function HeaderNavbar({
               {menu.map((item) => (
                 <li key={item.to}>
                   <Link
-                    to={`?type=${item.to}`}
+                    to={`?type=${item.to}&city=${searchCity}`}
                     className={`d-flex align-items-end rounded-pill fs-4 ${item.icon}`}
                   >
                     {item.icon === "bike" ? (

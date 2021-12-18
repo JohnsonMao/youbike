@@ -1,6 +1,16 @@
 @import '../../asset/scss/custom_variables';
 .form
 {
+  opacity: .8;
+  transition: .3s;
+
+  &:hover,
+  &:active,
+  &:focus
+  {
+    opacity: 1;
+  }
+
   &__group
   {
     max-width: 450px;

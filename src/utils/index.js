@@ -2,7 +2,6 @@ export function getSearchVal(search, type) {
   const searchParams = search.substr(1).split('&');
 
   const total = searchParams.length
-
   for (let i = 0; i < total; i++) {
     const searchParam = searchParams[i].split('=')
     if (searchParam[0] === type) {
@@ -13,7 +12,8 @@ export function getSearchVal(search, type) {
 }
 
 export const getCityName = (cityList, searchParam) => {
-  const index = cityList.findIndex((obj) => obj.City === searchParam)
+  if (!searchParam) return false
+  const index = cityList.findIndex((obj) => obj.City?.toLowerCase() === searchParam.toLowerCase());
   if (index === -1) {
     return false
   } else {
