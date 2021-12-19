@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Tooltip } from "react-leaflet";
+import MarkerClusterGroup from "react-leaflet-markercluster";
 import "leaflet/dist/leaflet.css";
 
 import Loading from "../Loading";
@@ -9,6 +10,7 @@ import {
   rentStationSVG,
   returnStationSVG,
   emptyStationSVG,
+  MarkerClusterIcon
 } from "./Icon";
 import "./map.scss";
 
@@ -21,38 +23,40 @@ const StationMarker = ({ nearby, type, searchParam }) => {
       {loading ? (
         <Loading />
       ) : (
-        bike_data.map((item) => (
-          <Marker
-            key={item.StationUID}
-            position={[
-              item.StationPosition.PositionLat,
-              item.StationPosition.PositionLon,
-            ]}
-            icon={
-              item.AvailableRentBikes === 0 && searchParam === "rent"
-                ? emptyStationSVG
-                : item.AvailableReturnBikes === 0 && searchParam === "return"
-                ? emptyStationSVG
-                : searchParam === "rent"
-                ? rentStationSVG
-                : returnStationSVG
-            }
-            title={item.StationName.Zh_tw}
-            alt={item.StationName.Zh_tw}
-          >
-            <Tooltip
-              offset={[-1, -8]}
-              direction="center"
-              opacity={1}
-              permanent
-              className={item.AvailableReturnBikes === 0 ? "text-dark" : null}
+        <MarkerClusterGroup showCoverageOnHover={false} iconCreateFunction={MarkerClusterIcon}>
+          {bike_data.map((item) => (
+            <Marker
+              key={item.StationUID}
+              position={[
+                item.StationPosition.PositionLat,
+                item.StationPosition.PositionLon,
+              ]}
+              icon={
+                item.AvailableRentBikes === 0 && searchParam === "rent"
+                  ? emptyStationSVG
+                  : item.AvailableReturnBikes === 0 && searchParam === "return"
+                  ? emptyStationSVG
+                  : searchParam === "rent"
+                  ? rentStationSVG
+                  : returnStationSVG
+              }
+              title={item.StationName.Zh_tw}
+              alt={item.StationName.Zh_tw}
             >
-              {searchParam === "rent"
-                ? item.AvailableRentBikes.toString()
-                : item.AvailableReturnBikes.toString()}
-            </Tooltip>
-          </Marker>
-        ))
+              <Tooltip
+                offset={[-1, -8]}
+                direction="center"
+                opacity={1}
+                permanent
+                className={item.AvailableReturnBikes === 0 ? "text-dark" : null}
+              >
+                {searchParam === "rent"
+                  ? item.AvailableRentBikes.toString()
+                  : item.AvailableReturnBikes.toString()}
+              </Tooltip>
+            </Marker>
+          ))}
+        </MarkerClusterGroup>
       )}
     </>
   );
@@ -79,6 +83,7 @@ export default function Map({
       center={position}
       zoom={zoom}
       whenCreated={setMap}
+      zoomSnap
       className="map-container"
     >
       <TileLayer
@@ -88,6 +93,7 @@ export default function Map({
       <Marker
         position={position}
         icon={GPS_SVG}
+        zIndexOffset={460}
         title="目前的位置"
         alt="目前的位置"
       ></Marker>
@@ -95,3 +101,4 @@ export default function Map({
     </MapContainer>
   );
 }
+

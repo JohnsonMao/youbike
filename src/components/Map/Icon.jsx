@@ -48,4 +48,18 @@ const emptyStationSVG = new L.Icon({
   className: "",
 });
 
-export { GPS_SVG, rentStationSVG, returnStationSVG, emptyStationSVG };
+const MarkerClusterIcon = (cluster) =>
+  L.divIcon({
+    html: `<span>${cluster.getChildCount()}</span>`,
+    className:
+      "bg-dark text-light rounded-circle d-flex justify-content-center align-items-center fs-2",
+    iconSize: L.point(30, 30, true),
+  });
+
+export {
+  GPS_SVG,
+  rentStationSVG,
+  returnStationSVG,
+  emptyStationSVG,
+  MarkerClusterIcon,
+};

@@ -61,6 +61,7 @@ export default function Station() {
         menu={menu}
         handleType={handleType}
         searchParam={searchType}
+        searchCity={searchCity}
       />
     </div>
   );

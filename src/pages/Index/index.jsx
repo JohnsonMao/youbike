@@ -54,7 +54,7 @@ export default function Index() {
           <h2 className="fs-5">微笑單車．暢遊城市</h2>
         </header>
         <Nav />
-        <span className="position-absolute bottom-0 end-0 fs-6 px-8 py-6">
+        <div className="fixed-bottom fs-6 text-end pe-8 pb-3">
           Where’s YouBike　© Code:{" "}
           <a
             href="https://github.com/JohnsonMao/youbike"
@@ -73,7 +73,7 @@ export default function Index() {
           >
             KT
           </a>
-        </span>
+        </div>
       </div>
     </div>
   );

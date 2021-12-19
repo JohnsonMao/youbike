@@ -6,7 +6,7 @@ import { ReactComponent as Bike } from "../../asset/icon/bike.svg";
 import { ReactComponent as Parking } from "../../asset/icon/parking.svg";
 import "./footerNavbar.scss";
 
-export default function FooterNavbar({ menu = [], page = "", searchParam }) {
+export default function FooterNavbar({ menu = [], page = "", searchParam, searchCity }) {
   return (
     <nav className="fixed-bottom bg-primary d-lg-none">
       <Container>
@@ -14,7 +14,7 @@ export default function FooterNavbar({ menu = [], page = "", searchParam }) {
           {menu.map((item) => (
             <li key={item.to} className="flex-fill">
               <Link
-                to={`?type=${item.to}`}
+                to={`?type=${item.to}&city=${searchCity}`}
                 className={`d-flex justify-content-center align-items-end fs-1 py-3 ${
                   searchParam === item.to ? "active" : ""
                 } ${item.icon}`}
