@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/youbike/static/css/main.dd881c59.chunk.css",
-    "main.js": "/youbike/static/js/main.d421333b.chunk.js",
-    "main.js.map": "/youbike/static/js/main.d421333b.chunk.js.map",
+    "main.js": "/youbike/static/js/main.d940224e.chunk.js",
+    "main.js.map": "/youbike/static/js/main.d940224e.chunk.js.map",
     "runtime-main.js": "/youbike/static/js/runtime-main.71b0d08e.js",
     "runtime-main.js.map": "/youbike/static/js/runtime-main.71b0d08e.js.map",
     "static/css/2.68ba508b.chunk.css": "/youbike/static/css/2.68ba508b.chunk.css",
-    "static/js/2.3234eac4.chunk.js": "/youbike/static/js/2.3234eac4.chunk.js",
-    "static/js/2.3234eac4.chunk.js.map": "/youbike/static/js/2.3234eac4.chunk.js.map",
+    "static/js/2.8b523e20.chunk.js": "/youbike/static/js/2.8b523e20.chunk.js",
+    "static/js/2.8b523e20.chunk.js.map": "/youbike/static/js/2.8b523e20.chunk.js.map",
     "index.html": "/youbike/index.html",
     "static/css/2.68ba508b.chunk.css.map": "/youbike/static/css/2.68ba508b.chunk.css.map",
     "static/css/main.dd881c59.chunk.css.map": "/youbike/static/css/main.dd881c59.chunk.css.map",
-    "static/js/2.3234eac4.chunk.js.LICENSE.txt": "/youbike/static/js/2.3234eac4.chunk.js.LICENSE.txt",
+    "static/js/2.8b523e20.chunk.js.LICENSE.txt": "/youbike/static/js/2.8b523e20.chunk.js.LICENSE.txt",
     "static/media/GPS.47d2b0be.svg": "/youbike/static/media/GPS.47d2b0be.svg",
     "static/media/GPS_s.a98a6aa0.svg": "/youbike/static/media/GPS_s.a98a6aa0.svg",
     "static/media/bike.d21024cb.svg": "/youbike/static/media/bike.d21024cb.svg",
@@ -27,8 +27,8 @@
   "entrypoints": [
     "static/js/runtime-main.71b0d08e.js",
     "static/css/2.68ba508b.chunk.css",
-    "static/js/2.3234eac4.chunk.js",
+    "static/js/2.8b523e20.chunk.js",
     "static/css/main.dd881c59.chunk.css",
-    "static/js/main.d421333b.chunk.js"
+    "static/js/main.d940224e.chunk.js"
   ]
 }
