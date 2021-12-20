@@ -6,6 +6,7 @@ const TOURISM_URL = "https://ptx.transportdata.tw/MOTC/v2/Tourism";
 /* 預設篩選站點資料 */
 const initBikeStation = {
   $select: [
+    "AuthorityID",
     "StationUID",
     "StationName",
     "ServiceType",

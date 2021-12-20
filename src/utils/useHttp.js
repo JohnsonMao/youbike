@@ -32,7 +32,7 @@ export default function useHttp(
   /* 使用定位 nearby */
   const nearby_param = useMemo(() => {
     return {
-      $spatialFilter: nearby
+      $spatialFilter: `nearby(${nearby},1000)`
     }
   }, [nearby])
 
@@ -44,7 +44,6 @@ export default function useHttp(
           setData(result);
           break;
         case "shape":
-          console.log(city)
           if (!city) break;
           const { data } = await apiCyclingShape(page_param ,city);
           setData(data);

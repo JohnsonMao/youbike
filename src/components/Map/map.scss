@@ -19,7 +19,6 @@
   font-style: italic;
   text-align: center;
   color: $dark;
-  transition: color .3s;
 }
 .leaflet-container .leaflet-control-attribution
 {
@@ -33,9 +32,46 @@
     bottom: 49.5px;
   }
 }
-.dark .leaflet-tooltip
+.rentNum
 {
-  color: $primary;
+  opacity: 1;
+}
+.returnNum
+{
+  opacity: 0;
+}
+.rentEmpty
+{
+  filter: grayscale(1);
+}
+.dark
+{
+  .rentNum
+  {
+    opacity: 0;
+  }
+  .returnNum
+  {
+    opacity: 1;
+  }
+  .station
+  {
+    filter: brightness(0);
+
+    &.returnEmpty
+    {
+      filter: grayscale(1);
+    }
+  }
+  .leaflet-tooltip
+  {
+    color: $primary;
+
+    &.zero
+    {
+      color: $dark;
+    }
+  }
 }
 .GPS
 {

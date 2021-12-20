@@ -12,40 +12,40 @@ const GPS_SVG = new L.Icon({
   className: "GPS animation-radar",
 });
 
-const rentStationSVG = new L.Icon({
-  iconUrl: require("../../asset/icon/rentStation.svg").default,
-  iconRetinaUrl: require("../../asset/icon/rentStation.svg").default,
+const stationSVG = new L.Icon({
+  iconUrl: require("../../asset/icon/station.svg").default,
+  iconRetinaUrl: require("../../asset/icon/station.svg").default,
   iconAnchor: null,
   popupAnchor: [0, 0],
   shadowUrl: null,
   shadowSize: null,
   shadowAnchor: null,
   iconSize: new L.Point(36, 50),
-  className: "",
+  className: "station",
 });
 
-const returnStationSVG = new L.Icon({
-  iconUrl: require("../../asset/icon/returnStation.svg").default,
-  iconRetinaUrl: require("../../asset/icon/returnStation.svg").default,
+const rentEmptyStationSVG = new L.Icon({
+  iconUrl: require("../../asset/icon/station.svg").default,
+  iconRetinaUrl: require("../../asset/icon/station.svg").default,
   iconAnchor: null,
   popupAnchor: [0, 0],
   shadowUrl: null,
   shadowSize: null,
   shadowAnchor: null,
   iconSize: new L.Point(36, 50),
-  className: "",
+  className: "rentEmpty station",
 });
 
-const emptyStationSVG = new L.Icon({
-  iconUrl: require("../../asset/icon/emptyStation.svg").default,
-  iconRetinaUrl: require("../../asset/icon/emptyStation.svg").default,
+const returnEmptyStationSVG = new L.Icon({
+  iconUrl: require("../../asset/icon/station.svg").default,
+  iconRetinaUrl: require("../../asset/icon/station.svg").default,
   iconAnchor: null,
   popupAnchor: [0, 0],
   shadowUrl: null,
   shadowSize: null,
   shadowAnchor: null,
   iconSize: new L.Point(36, 50),
-  className: "",
+  className: "returnEmpty station",
 });
 
 const MarkerClusterIcon = (cluster) =>
@@ -58,8 +58,8 @@ const MarkerClusterIcon = (cluster) =>
 
 export {
   GPS_SVG,
-  rentStationSVG,
-  returnStationSVG,
-  emptyStationSVG,
+  stationSVG,
+  rentEmptyStationSVG,
+  returnEmptyStationSVG,
   MarkerClusterIcon,
 };

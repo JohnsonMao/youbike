@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import useGeolocation from "react-hook-geolocation";
 
@@ -9,6 +9,7 @@ import NearbyBtn from "../../components/NearbyBtn";
 import Map from "../../components/Map";
 import Loading from "../../components/Loading";
 import { getSearchVal } from "../../utils";
+import useHttp from "../../utils/useHttp";
 
 const menu = [
   {
@@ -24,7 +25,7 @@ const menu = [
 ];
 
 export default function Station() {
-  const geolocation = useGeolocation();
+  const { error, latitude, longitude } = useGeolocation();
   const { search } = useLocation();
   const [map, setMap] = useState(null);
   const handleMap = (e) => setMap(e);
@@ -33,6 +34,15 @@ export default function Station() {
   const zoom = 16;
   const searchType = getSearchVal(search, "type");
   const searchCity = getSearchVal(search, "city");
+  const [nearby, setNearby] = useState(latitude + ',' + longitude);
+  
+  useEffect(() => {
+    setNearby(latitude + ',' + longitude);
+  }, [latitude, longitude]);
+
+  const { data, loading } = useHttp("", "bike", nearby);
+  
+  const stations = data.filter((station) => station.ServiceType === type);
   
   return (
     <div className={searchType === "rent" ? null : "dark"}>
@@ -44,16 +54,16 @@ export default function Station() {
         searchCity={searchCity}
       />
       <Search searchType={searchType} searchCity={searchCity} />
-      {map ? <NearbyBtn map={map} zoom={zoom} {...geolocation} /> : null}
-      {geolocation.latitude === null ? (
+      {map ? <NearbyBtn map={map} zoom={zoom} latitude={latitude} longitude={longitude} /> : null}
+      {latitude === null ? (
         <Loading />
       ) : (
         <Map
-          type={type}
           setMap={handleMap}
+          data={stations}
           zoom={zoom}
-          searchParam={searchType}
-          {...geolocation}
+          latitude={latitude} 
+          longitude={longitude}
         />
       )}
       <FooterNavbar

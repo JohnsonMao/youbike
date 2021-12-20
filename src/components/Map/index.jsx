@@ -7,76 +7,60 @@ import Loading from "../Loading";
 import useHttp from "../../utils/useHttp";
 import {
   GPS_SVG,
-  rentStationSVG,
-  returnStationSVG,
-  emptyStationSVG,
-  MarkerClusterIcon
+  stationSVG,
+  rentEmptyStationSVG,
+  returnEmptyStationSVG,
+  MarkerClusterIcon,
 } from "./Icon";
 import "./map.scss";
 
-const StationMarker = ({ nearby, type, searchParam }) => {
-  const { data, loading } = useHttp("", "bike", nearby);
-  const bike_data = data.filter((station) => station.ServiceType === type);
+const StationMarker = ({ data }) => (
+  <MarkerClusterGroup
+    showCoverageOnHover={false}
+    iconCreateFunction={MarkerClusterIcon}
+  >
+    {data.map((item) => (
+      <Marker
+        key={item.StationUID}
+        position={[
+          item.StationPosition.PositionLat,
+          item.StationPosition.PositionLon,
+        ]}
+        icon={
+          item.AvailableRentBikes === 0
+            ? rentEmptyStationSVG
+            : item.AvailableReturnBikes === 0
+            ? rentEmptyStationSVG
+            : stationSVG
+        }
+        title={item.StationName.Zh_tw}
+        alt={item.StationName.Zh_tw}
+      >
+        <Tooltip offset={[-1, -8]} direction="center" opacity={1} permanent>
+          <span className="position-absolute top-50 start-50 translate-middle rentNum">
+            {item.AvailableRentBikes.toString()}
+          </span>
+          <span
+            className={`position-absolute top-50 start-50 translate-middle returnNum ${
+              item.AvailableReturnBikes === 0 ? "zero" : null
+            }`}
+          >
+            {item.AvailableReturnBikes.toString()}
+          </span>
+        </Tooltip>
+      </Marker>
+    ))}
+  </MarkerClusterGroup>
+);
 
-  return (
-    <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <MarkerClusterGroup showCoverageOnHover={false} iconCreateFunction={MarkerClusterIcon}>
-          {bike_data.map((item) => (
-            <Marker
-              key={item.StationUID}
-              position={[
-                item.StationPosition.PositionLat,
-                item.StationPosition.PositionLon,
-              ]}
-              icon={
-                item.AvailableRentBikes === 0 && searchParam === "rent"
-                  ? emptyStationSVG
-                  : item.AvailableReturnBikes === 0 && searchParam === "return"
-                  ? emptyStationSVG
-                  : searchParam === "rent"
-                  ? rentStationSVG
-                  : returnStationSVG
-              }
-              title={item.StationName.Zh_tw}
-              alt={item.StationName.Zh_tw}
-            >
-              <Tooltip
-                offset={[-1, -8]}
-                direction="center"
-                opacity={1}
-                permanent
-                className={item.AvailableReturnBikes === 0 ? "text-dark" : null}
-              >
-                {searchParam === "rent"
-                  ? item.AvailableRentBikes.toString()
-                  : item.AvailableReturnBikes.toString()}
-              </Tooltip>
-            </Marker>
-          ))}
-        </MarkerClusterGroup>
-      )}
-    </>
-  );
-};
-
-export default function Map({
-  latitude,
-  longitude,
-  type,
-  setMap,
-  zoom,
-  searchParam,
-}) {
+export default function Map({ data, latitude, longitude, setMap, zoom }) {
   const [position, setPosition] = useState([latitude, longitude]);
-  const [nearby, setNearby] = useState(`nearby(${latitude},${longitude},1000)`);
 
   useEffect(() => {
     setPosition([latitude, longitude]);
-    setNearby(`nearby(${latitude},${longitude},1000)`);
   }, [latitude, longitude]);
+
+  console.log(data);
 
   return (
     <MapContainer
@@ -97,8 +81,7 @@ export default function Map({
         title="目前的位置"
         alt="目前的位置"
       ></Marker>
-      <StationMarker nearby={nearby} type={type} searchParam={searchParam} />
+      <StationMarker data={data} />
     </MapContainer>
   );
 }
-
