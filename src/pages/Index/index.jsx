@@ -6,13 +6,13 @@ import youbike from "../../asset/icon/youbike.json";
 import { ReactComponent as Logo } from "../../asset/icon/logo.svg";
 import "./index.scss";
 
-const Nav = () => {
+const Nav = ({ city }) => {
   return (
     <nav>
       <ul>
         <li>
           <Link
-            to="station?type=rent&city=Taipei"
+            to={`station?type=rent&city=${city}`}
             className="d-block w-100 btn fs-2 p-3 mb-7"
           >
             尋找 Youbike
@@ -33,7 +33,7 @@ const Nav = () => {
   );
 };
 
-export default function Index() {
+export default function Index({ city }) {
   return (
     <div className="vh-100 bg-primary d-flex justify-content-center">
       <div className="index_menu d-flex flex-column justify-content-evenly py-8">
@@ -53,7 +53,7 @@ export default function Index() {
           </h1>
           <h2 className="fs-5">微笑單車．暢遊城市</h2>
         </header>
-        <Nav />
+        <Nav city={city} />
         <div className="fixed-bottom fs-6 text-end pe-8 pb-3">
           Where’s YouBike　© Code:{" "}
           <a

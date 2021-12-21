@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback, useMemo } from "react";
 
-import { apiBike, apiCyclingShape } from "../api";
+import { apiLocationType, apiBike, apiCyclingShape } from "../api";
 
 export default function useHttp(
   city = "",
@@ -39,6 +39,10 @@ export default function useHttp(
   const updateData = useCallback(async () => {
     try {
       switch (type) {
+        case "cityType":
+          const {data: cityType} = await apiLocationType(nearby_param);
+          setData(cityType);
+          break;
         case "bike":
           const result = await apiBike(nearby_param);
           setData(result);

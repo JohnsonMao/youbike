@@ -31,6 +31,7 @@ export default function Search({ searchType, searchCity }) {
   }, [handleSelect]);
 
   const cityName = getCityName(bikeCityList, searchCity);
+  
   return (
     <Container>
       <form className="form">

@@ -29,6 +29,9 @@ const apiBikeStation = (data = null) =>
 /* 自行車車位 API */
 const apiBikeAvailability = (data = null) =>
   ajax(ROOT_URL + "/Bike/Availability/Nearby", { ...initBikeAvailability, ...data });
+/* 獲取定位縣市代號 */
+export const apiLocationType = (data = null) =>
+  ajax(ROOT_URL + "/Bike/Station/NearBy", { ...initBikeStation, ...data, $top: 1 });
 /* 整合站點與車位的 API */
 export const apiBike = async (data = null) => {
   const { data: bikeStation } = await apiBikeStation(data);

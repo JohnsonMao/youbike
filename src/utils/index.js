@@ -20,3 +20,13 @@ export const getCityName = (cityList, searchParam) => {
     return cityList[index].CityName
   }
 }
+
+export const getCityFromType = (cityList, cityType) => {
+  if (!cityType) return false
+  const index = cityList.findIndex((obj) => obj.CityCode === cityType);
+  if (index === -1) {
+    return false
+  } else {
+    return cityList[index].City
+  }
+}
