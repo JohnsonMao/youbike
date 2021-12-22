@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import useGeolocation from "react-hook-geolocation";
 
 import HeaderNavbar from "../../components/HeaderNavbar";
 import FooterNavbar from "../../components/FooterNavbar";
@@ -24,8 +23,7 @@ const menu = [
   },
 ];
 
-export default function Station() {
-  const { error, latitude, longitude } = useGeolocation();
+export default function Station({ error, latitude, longitude }) {
   const { search } = useLocation();
   const [map, setMap] = useState(null);
   const handleMap = (e) => setMap(e);
@@ -34,7 +32,11 @@ export default function Station() {
   const zoom = 16;
   const searchType = getSearchVal(search, "type");
   const searchCity = getSearchVal(search, "city");
+  
+  const [index, setIndex] = useState('noIndex');
+
   const [nearby, setNearby] = useState(latitude + ',' + longitude);
+
   
   useEffect(() => {
     setNearby(latitude + ',' + longitude);
@@ -60,6 +62,8 @@ export default function Station() {
       ) : (
         <Map
           setMap={handleMap}
+          map={map}
+          index={index}
           data={stations}
           zoom={zoom}
           latitude={latitude} 

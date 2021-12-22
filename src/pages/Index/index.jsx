@@ -19,7 +19,7 @@ const Nav = ({ city }) => {
           </Link>
         </li>
         <li>
-          <Link to="shape" className="d-block w-100 btn fs-2 p-3 mb-7">
+          <Link to={`shape?city=${city}`} className="d-block w-100 btn fs-2 p-3 mb-7">
             查詢自行車道
           </Link>
         </li>

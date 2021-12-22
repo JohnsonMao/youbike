@@ -33,7 +33,7 @@ export default function Search({ searchType, searchCity }) {
   const cityName = getCityName(bikeCityList, searchCity);
   
   return (
-    <Container>
+    <Container className="position-absolute top-20 start-50 translate-middle">
       <form className="form">
         <div className="form__group d-flex mx-auto">
           <div className="d-flex bg-light rounded shadow me-1">

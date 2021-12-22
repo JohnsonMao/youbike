@@ -154,3 +154,22 @@ img
     transform: translateY(2px);
   }
 }
+
+.pt-header
+{
+  padding-top: 80px;
+}
+
+.text-line-1
+{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.top-20
+{
+  top: 20%;
+}

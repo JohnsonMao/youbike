@@ -42,7 +42,7 @@ export default function HeaderNavbar({
   const cityName = getCityName(cityList, searchParam);
 
   return (
-    <header className="header bg-primary mb-8 py-3 shadow">
+    <header className="header fixed-top bg-primary py-3 shadow">
       <Container>
         <Row className="align-items-center">
           <Col>
