@@ -20,4 +20,18 @@
     border: 0;
     border-radius: 8px;
   }
+
+  &__result
+  {
+    li
+    {
+      background: $light;
+      cursor: pointer;
+
+      &:hover
+      {
+        background: $primary;
+      }
+    }
+  }
 }

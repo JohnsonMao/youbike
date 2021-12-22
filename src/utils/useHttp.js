@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback, useMemo } from "react";
 
-import { apiLocationType, apiBike, apiCyclingShape } from "../api";
+import { apiLocationType, apiBike, apiBikeStation, apiCyclingShape } from "../api";
 
 export default function useHttp(
   city = "",
@@ -44,13 +44,14 @@ export default function useHttp(
           setData(cityType);
           break;
         case "bike":
-          const result = await apiBike(nearby_param);
-          setData(result);
+          const result = await apiBike('Nearby', nearby_param);
+          const {data: stations} = await apiBikeStation(city)
+          setData([result, stations]);
           break;
         case "shape":
           if (!city) break;
-          const { data } = await apiCyclingShape(page_param ,city);
-          setData(data);
+          const { data: shapes } = await apiCyclingShape(page_param ,city);
+          setData(shapes);
           break
         default:
           break;

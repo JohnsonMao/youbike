@@ -18,24 +18,10 @@ const StationMarker = ({ item, isActive, map }) => {
 
   useEffect(() => {
     if (refReady && isActive) {
-      popupRef.openOn(map);
+      // popupRef.openOn(map);
     }
   }, [refReady, isActive, map]);
 
-  /*
-  AvailableRentBikes: 19
-  AvailableReturnBikes: 1
-  BikesCapacity: 20
-  ServiceStatus: 1
-  ServiceType: 1
-  SrcUpdateTime: "2021-12-22T20:56:40+08:00"
-  StationAddress:
-    En: "No.8, Ln. 26, Zhongxiao St., Yonghe Dist."
-    Zh_tw: "忠孝街26巷8號(前)(鄰近楊三郎美術館)"
-  StationName:
-    En: "YouBike1.0_Zhongxiao Activity Center"
-    Zh_tw: "YouBike1.0_忠孝活動中心"
-  */
 
   return (
     <Marker

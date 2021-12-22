@@ -7,8 +7,18 @@ import { bikeCityList } from "../../utils/cityList";
 import { getCityName } from "../../utils";
 import "./search.scss";
 
-export default function Search({ searchType, searchCity }) {
+export default function Search({ data = [], searchType, searchCity }) {
   const [hide, setHide] = useState(true);
+  
+  const [keyword, setKeyword] = useState("");
+  const [resultShow, setResultShow] = useState(false);
+  const handleKeyword = (e) => {
+    setKeyword(e.target.value);
+  };
+  const handleResultShow = () => {
+    setResultShow(true);
+  }
+
   const handleSelect = useCallback(
     (e) => {
       const { node } = e.target.dataset;
@@ -16,12 +26,26 @@ export default function Search({ searchType, searchCity }) {
         case "select":
           setHide(!hide);
           break;
+        case "search":
+          handleResultShow();
+          break;
         default:
           setHide(true);
+          setResultShow(false);
       }
     },
     [setHide, hide]
   );
+
+  const clickResult = (e) => {
+    setKeyword(e.target.innerText);
+  };
+
+  const filterData = data.filter(
+    (item) => item.StationName.Zh_tw.indexOf(keyword) !== -1
+  );
+
+  const result = filterData.slice(0, 10);
 
   useEffect(() => {
     window.addEventListener("click", handleSelect);
@@ -31,7 +55,7 @@ export default function Search({ searchType, searchCity }) {
   }, [handleSelect]);
 
   const cityName = getCityName(bikeCityList, searchCity);
-  
+
   return (
     <Container className="position-absolute top-20 start-50 translate-middle">
       <form className="form">
@@ -60,24 +84,47 @@ export default function Search({ searchType, searchCity }) {
                     {cityName}
                   </Link>
                 </li>
-                {bikeCityList.map((item) => (
-                  item.City.toLowerCase() === searchCity.toLowerCase() ? null :
-                  <li key={item.City}>
-                    <Link
-                      to={`?type=${searchType}&city=${item.City}`}
-                      className="d-block text-dark p-3 py-2"
-                    >
-                      {item.CityName}
-                    </Link>
-                  </li>
-                ))}
+                {bikeCityList.map((item) =>
+                  item.City.toLowerCase() ===
+                  searchCity.toLowerCase() ? null : (
+                    <li key={item.City}>
+                      <Link
+                        to={`?type=${searchType}&city=${item.City}`}
+                        className="d-block text-dark p-3 py-2"
+                      >
+                        {item.CityName}
+                      </Link>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
-            <input
-              type="search"
-              placeholder="尋找站點"
-              className="form__control fs-2 w-100 p-3 py-2"
-            />
+            <div className="position-relative">
+              <input
+                type="search"
+                placeholder="尋找站點"
+                className="form__control fs-2 w-100 p-3 py-2"
+                onChange={handleKeyword}
+                value={keyword}
+                onFocus={handleResultShow}
+                data-node="search"
+              />
+              <ul
+                className="position-absolute w-100 form__result rounded-bottom overflow-hidden"
+                onClick={clickResult}
+              >
+                {keyword.trim() && resultShow
+                  ? result.map((item) => (
+                      <li
+                        key={item.StationUID}
+                        className="p-1 ps-3 text-line-1"
+                      >
+                        {item.StationName.Zh_tw.slice(11)}
+                      </li>
+                    ))
+                  : null}
+              </ul>
+            </div>
           </div>
           <button type="button" className="btn btn--dark p-3 py-2 shadow">
             <SearchIcon />

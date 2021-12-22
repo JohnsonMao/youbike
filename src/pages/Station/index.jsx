@@ -42,9 +42,9 @@ export default function Station({ error, latitude, longitude }) {
     setNearby(latitude + ',' + longitude);
   }, [latitude, longitude]);
 
-  const { data, loading } = useHttp("", "bike", nearby);
-  
-  const stations = data.filter((station) => station.ServiceType === type);
+  const { data, loading } = useHttp(searchCity, "bike", nearby);
+  const nearbyStations = data[0]?.filter((station) => station.ServiceType === type);
+  const cityStations = data[1]?.filter((station) => station.ServiceType === type);
   
   return (
     <div className={searchType === "rent" ? null : "dark"}>
@@ -55,16 +55,16 @@ export default function Station({ error, latitude, longitude }) {
         searchParam={searchType}
         searchCity={searchCity}
       />
-      <Search searchType={searchType} searchCity={searchCity} />
+      <Search data={cityStations} searchType={searchType} searchCity={searchCity} />
       {map ? <NearbyBtn map={map} zoom={zoom} latitude={latitude} longitude={longitude} /> : null}
-      {latitude === null ? (
+      {latitude === null || loading ? (
         <Loading />
       ) : (
         <Map
           setMap={handleMap}
           map={map}
           index={index}
-          data={stations}
+          data={nearbyStations}
           zoom={zoom}
           latitude={latitude} 
           longitude={longitude}
