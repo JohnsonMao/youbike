@@ -5,9 +5,10 @@ import { Container } from "react-bootstrap";
 import { ReactComponent as SearchIcon } from "../../asset/icon/search.svg";
 import { bikeCityList } from "../../utils/cityList";
 import { getCityName } from "../../utils";
+import useHttp from '../../utils/useHttp';
 import "./search.scss";
 
-export default function Search({ data = [], searchType, searchCity }) {
+export default function Search({ searchType, searchCity, type }) {
   const [hide, setHide] = useState(true);
   
   const [keyword, setKeyword] = useState("");
@@ -40,8 +41,11 @@ export default function Search({ data = [], searchType, searchCity }) {
   const clickResult = (e) => {
     setKeyword(e.target.innerText);
   };
+  
+  const { data, loading } = useHttp(searchCity, "bike");
+  const cityStations = data.filter((station) => station.ServiceType === type);
 
-  const filterData = data.filter(
+  const filterData = cityStations.filter(
     (item) => item.StationName.Zh_tw.indexOf(keyword) !== -1
   );
 

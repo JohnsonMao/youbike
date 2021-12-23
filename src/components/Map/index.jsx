@@ -10,6 +10,8 @@ import {
   returnEmptyStationSVG,
   MarkerClusterIcon,
 } from "./Icon";
+import Loading from "../Loading";
+import useHttp from '../../utils/useHttp';
 import "./map.scss";
 
 const StationMarker = ({ item, isActive, map }) => {
@@ -21,7 +23,6 @@ const StationMarker = ({ item, isActive, map }) => {
       // popupRef.openOn(map);
     }
   }, [refReady, isActive, map]);
-
 
   return (
     <Marker
@@ -79,14 +80,16 @@ const StationMarker = ({ item, isActive, map }) => {
 };
 
 export default function Map({
-  data,
   index,
   latitude,
   longitude,
   map,
   setMap,
   zoom,
+  type,
+  nearby
 }) {
+
   useEffect(() => {
     const delay = setTimeout(() => {
       if (index !== "noIndex") {
@@ -99,6 +102,9 @@ export default function Map({
       clearTimeout(delay);
     };
   }, [map, zoom, index, latitude, longitude]);
+
+  const { data, loading } = useHttp('Nearby', "bike", nearby);
+  const nearbyStations = data.filter((station) => station.ServiceType === type);
 
   return (
     <MapContainer
@@ -123,9 +129,13 @@ export default function Map({
         showCoverageOnHover={false}
         iconCreateFunction={MarkerClusterIcon}
       >
-        {data.map((item, index) => (
-          <StationMarker key={index} item={item} isActive={index} map={map} />
-        ))}
+        {loading ? (
+          <Loading />
+        ) : (
+          nearbyStations.map((item, index) => (
+            <StationMarker key={index} item={item} isActive={index} map={map} />
+          ))
+        )}
       </MarkerClusterGroup>
     </MapContainer>
   );

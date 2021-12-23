@@ -38,7 +38,7 @@ export default function Index({ city }) {
     <div className="vh-100 bg-primary d-flex justify-content-center">
       <div className="index_menu d-flex flex-column justify-content-evenly py-8">
         <header className="header mt-8">
-          <div className="border-bottom border-dark border-3 mb-2 stone">
+          <div className="stone py-2">
             <div className="w-50 animation-bumps">
               <Lottie
                 options={{
