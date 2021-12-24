@@ -1,34 +1,32 @@
 {
   "files": {
-    "main.css": "/youbike/static/css/main.dd881c59.chunk.css",
-    "main.js": "/youbike/static/js/main.d940224e.chunk.js",
-    "main.js.map": "/youbike/static/js/main.d940224e.chunk.js.map",
+    "main.css": "/youbike/static/css/main.fd4115eb.chunk.css",
+    "main.js": "/youbike/static/js/main.c81e1da7.chunk.js",
+    "main.js.map": "/youbike/static/js/main.c81e1da7.chunk.js.map",
     "runtime-main.js": "/youbike/static/js/runtime-main.71b0d08e.js",
     "runtime-main.js.map": "/youbike/static/js/runtime-main.71b0d08e.js.map",
     "static/css/2.68ba508b.chunk.css": "/youbike/static/css/2.68ba508b.chunk.css",
-    "static/js/2.8b523e20.chunk.js": "/youbike/static/js/2.8b523e20.chunk.js",
-    "static/js/2.8b523e20.chunk.js.map": "/youbike/static/js/2.8b523e20.chunk.js.map",
+    "static/js/2.f2ab70c6.chunk.js": "/youbike/static/js/2.f2ab70c6.chunk.js",
+    "static/js/2.f2ab70c6.chunk.js.map": "/youbike/static/js/2.f2ab70c6.chunk.js.map",
     "index.html": "/youbike/index.html",
     "static/css/2.68ba508b.chunk.css.map": "/youbike/static/css/2.68ba508b.chunk.css.map",
-    "static/css/main.dd881c59.chunk.css.map": "/youbike/static/css/main.dd881c59.chunk.css.map",
-    "static/js/2.8b523e20.chunk.js.LICENSE.txt": "/youbike/static/js/2.8b523e20.chunk.js.LICENSE.txt",
+    "static/css/main.fd4115eb.chunk.css.map": "/youbike/static/css/main.fd4115eb.chunk.css.map",
+    "static/js/2.f2ab70c6.chunk.js.LICENSE.txt": "/youbike/static/js/2.f2ab70c6.chunk.js.LICENSE.txt",
     "static/media/GPS.47d2b0be.svg": "/youbike/static/media/GPS.47d2b0be.svg",
     "static/media/GPS_s.a98a6aa0.svg": "/youbike/static/media/GPS_s.a98a6aa0.svg",
     "static/media/bike.d21024cb.svg": "/youbike/static/media/bike.d21024cb.svg",
     "static/media/style.scss": "/youbike/static/media/dropdown.47e10826.svg",
-    "static/media/emptyStation.svg": "/youbike/static/media/emptyStation.7c82746d.svg",
     "static/media/logo.5b86f656.svg": "/youbike/static/media/logo.5b86f656.svg",
     "static/media/parking.5f193d3b.svg": "/youbike/static/media/parking.5f193d3b.svg",
-    "static/media/rentStation.svg": "/youbike/static/media/rentStation.61fc53f5.svg",
-    "static/media/returnStation.svg": "/youbike/static/media/returnStation.72484127.svg",
     "static/media/search.ec78554a.svg": "/youbike/static/media/search.ec78554a.svg",
+    "static/media/station.svg": "/youbike/static/media/station.61fc53f5.svg",
     "static/media/youbike_GPS.svg": "/youbike/static/media/youbike_GPS.3ccda339.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.71b0d08e.js",
     "static/css/2.68ba508b.chunk.css",
-    "static/js/2.8b523e20.chunk.js",
-    "static/css/main.dd881c59.chunk.css",
-    "static/js/main.d940224e.chunk.js"
+    "static/js/2.f2ab70c6.chunk.js",
+    "static/css/main.fd4115eb.chunk.css",
+    "static/js/main.c81e1da7.chunk.js"
   ]
 }
