@@ -4,9 +4,9 @@ import { ReactComponent as GPS } from "../../asset/icon/GPS.svg";
 
 export default function NearbyBtn({ nearby, map, zoom, setPosition, setIndex }) {
   const onClick = useCallback(() => {
-    setPosition(nearby);
+    setPosition(nearby.split(','));
     setIndex('noIndex');
-    map.setView(nearby, zoom);
+    map.setView(nearby.split(','), zoom);
   }, [map, nearby, zoom, setPosition, setIndex]);
 
   return (

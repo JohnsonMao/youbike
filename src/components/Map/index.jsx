@@ -84,16 +84,16 @@ export default function Map({
   zoom,
   position,
   nearby,
-  nearbyStations,
+  nearbyStations = [],
   loading
 }) {
 
   useEffect(() => {
     const delay = setTimeout(() => {
       if (index === "noIndex") {
-        map?.setView(nearby, zoom);
+        map?.setView(nearby.split(','), zoom);
       } else {
-        map?.setView(position, zoom);
+        map?.setView(position.split(','), zoom);
       }
     }, 0);
     return () => {
@@ -104,7 +104,7 @@ export default function Map({
   
   return (
     <MapContainer
-      center={position}
+      center={nearby.split(',')}
       zoom={zoom}
       whenCreated={setMap}
       zoomSnap
@@ -115,7 +115,7 @@ export default function Map({
         attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
       />
       <Marker
-        position={nearby}
+        position={nearby.split(',')}
         icon={GPS_SVG}
         zIndexOffset={460}
         title="目前的位置"

@@ -17,10 +17,11 @@ export default function App() {
     maximumAge: 15000,
     timeout: 12000,
   });
-  const [nearby, setNearby] = useState([latitude, longitude]);
+  const [nearby, setNearby] = useState(`${latitude},${longitude}`);
   useEffect(() => {
-    setNearby([latitude, longitude]);
+    setNearby(`${latitude},${longitude}`);
   }, [latitude, longitude]);
+
   const { data } = useHttp("Nearby", "cityType", nearby);
   const cityCode = data[0]?.AuthorityID;
   const city = getCityFromType(bikeCityList, cityCode);

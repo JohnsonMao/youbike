@@ -63,7 +63,7 @@ const initCyclingShape = {
   ],
 };
 /* 自行車道路 API */
-export const apiCyclingShape = (data = null, City = "Taipei") =>
+export const apiCyclingShape = (City = "Taipei", data = null) =>
   ajax(ROOT_URL + "/Cycling/Shape/" + City, { ...initCyclingShape, ...data });
 
 /* 預設篩選餐廳資料 */

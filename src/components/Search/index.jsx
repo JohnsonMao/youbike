@@ -35,8 +35,7 @@ export default function Search({
           setResultShow(true);
           break;
         case "showStation":
-          const positionArr = position.split('-');
-          setPosition(positionArr);
+          setPosition(position);
           setIndex(index);
           setResultShow(false);
           break;
@@ -129,7 +128,7 @@ export default function Search({
                         className="p-1 ps-3 text-line-1"
                         data-position={
                           item.StationPosition.PositionLat +
-                          "-" +
+                          "," +
                           item.StationPosition.PositionLon
                         }
                         data-node="showStation"

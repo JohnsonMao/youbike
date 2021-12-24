@@ -34,13 +34,13 @@ export default function Station({ error, latitude, longitude, nearby }) {
   const searchCity = getSearchVal(search, "city");
 
   const [index, setIndex] = useState("noIndex");
-  const [position, setPosition] = useState([latitude, longitude]);
+  const [position, setPosition] = useState(`${latitude},${longitude}`);
   const handlePosition = (e) => {
     setPosition(e);
   };
 
   useEffect(() => {
-    setPosition([latitude, longitude]);
+    setPosition(`${latitude},${longitude}`);
   }, [latitude, longitude]);
 
   const { data, loading } = useHttp(searchCity, "bike", position);
@@ -76,7 +76,7 @@ export default function Station({ error, latitude, longitude, nearby }) {
           setIndex={setIndex}
         />
       ) : null}
-      {position[0] === null ? (
+      {nearby.split(',')[0] === 'null' ? (
         <Loading />
       ) : (
         <Map

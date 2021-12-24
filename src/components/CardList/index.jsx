@@ -3,14 +3,12 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import { cityList } from "../../utils/cityList";
 import Loading from "../Loading";
-import useHttp from "../../utils/useHttp";
 import { getCityName } from "../../utils";
 import { ReactComponent as GPS } from "../../asset/icon/GPS_s.svg";
 
-export default function CardList({ searchParam }) {
-  const { data, loading } = useHttp(searchParam);
+export default function CardList({ data, loading, searchParam }) {
+
   const cityName = getCityName(cityList, searchParam);
-  console.log(data);
 
   return (
     <Container className="pt-header">

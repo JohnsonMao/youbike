@@ -7,7 +7,7 @@ export default function Tourism() {
   return (
     <>
       <HeaderNavbar page="tourism" />
-      <Container>
+      <Container className="pt-header">
         此功能尚未實作
       </Container>
     </>

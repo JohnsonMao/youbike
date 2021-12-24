@@ -1,11 +1,16 @@
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useCallback } from "react";
 
-import { apiLocationType, apiBike, apiBikeStation, apiCyclingShape } from "../api";
+import {
+  apiLocationType,
+  apiBike,
+  apiBikeStation,
+  apiCyclingShape,
+} from "../api";
 
 export default function useHttp(
   city = "",
-  type = "shape",
-  nearby = [null, null],
+  type = "",
+  nearby = `null,null`,
   count = 100,
   page = 1
 ) {
@@ -21,38 +26,30 @@ export default function useHttp(
   /* 往回按不會重複請求 */
   if (skip < newSkip) setSkip(newSkip);
 
-  /* 頁數基礎參數 */
-  const page_param = useMemo(() => {
-    return {
+  const updateData = useCallback(async () => {
+    /* 使用定位 nearby */
+    const nearby_param = { $spatialFilter: `nearby(${nearby},1000)` };
+    /* 頁數基礎參數 */
+    const page_param = {
       $top: newCount,
       $skip: count * skip,
     };
-  }, [newCount, count, skip]);
-
-  /* 使用定位 nearby */
-  const nearby_param = useMemo(() => {
-    return {
-      $spatialFilter: `nearby(${nearby[0]},${nearby[1]},1000)`
-    }
-  }, [nearby])
-
-  const updateData = useCallback(async () => {
     try {
       switch (type) {
         case "cityType":
-          const {data: cityType} = await apiLocationType(nearby_param);
+          const { data: cityType } = await apiLocationType(nearby_param);
           setData(cityType);
           break;
         case "bike":
-          const result = await apiBike('Nearby', nearby_param);
-          const {data: stations} = await apiBikeStation(city);
+          const result = await apiBike("Nearby", nearby_param);
+          const { data: stations } = await apiBikeStation(city);
           setData([result, stations]);
           break;
         case "shape":
-          if (!city) break;
-          const { data: shapes } = await apiCyclingShape(page_param ,city);
+          const { data: shapes } = await apiCyclingShape(city, page_param);
           setData(shapes);
-          break
+          console.log(shapes);
+          break;
         default:
           break;
       }
@@ -60,7 +57,7 @@ export default function useHttp(
     } catch (error) {
       setError(true);
     }
-  }, [type, city, nearby_param, page_param]);
+  }, [type, city, nearby, count, newCount, skip]);
 
   useEffect(() => {
     setData([]);

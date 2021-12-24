@@ -7,6 +7,7 @@ import { ReactComponent as Logo } from "../../asset/icon/logo.svg";
 import "./index.scss";
 
 const Nav = ({ city }) => {
+
   return (
     <nav>
       <ul>
