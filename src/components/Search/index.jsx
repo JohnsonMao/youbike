@@ -5,45 +5,52 @@ import { Container } from "react-bootstrap";
 import { ReactComponent as SearchIcon } from "../../asset/icon/search.svg";
 import { bikeCityList } from "../../utils/cityList";
 import { getCityName } from "../../utils";
-import useHttp from '../../utils/useHttp';
 import "./search.scss";
 
-export default function Search({ searchType, searchCity, type }) {
+export default function Search({
+  searchType,
+  searchCity,
+  setIndex,
+  setPosition,
+  cityStations = [],
+}) {
   const [hide, setHide] = useState(true);
-  
+
   const [keyword, setKeyword] = useState("");
   const [resultShow, setResultShow] = useState(false);
   const handleKeyword = (e) => {
     setKeyword(e.target.value);
   };
-  const handleResultShow = () => {
-    setResultShow(true);
-  }
 
   const handleSelect = useCallback(
     (e) => {
-      const { node } = e.target.dataset;
+      const { node, position, index } = e.target.dataset;
       switch (node) {
         case "select":
+          setResultShow(false);
           setHide(!hide);
           break;
         case "search":
-          handleResultShow();
+          setHide(true);
+          setResultShow(true);
+          break;
+        case "showStation":
+          const positionArr = position.split('-');
+          setPosition(positionArr);
+          setIndex(index);
+          setResultShow(false);
           break;
         default:
           setHide(true);
           setResultShow(false);
       }
     },
-    [setHide, hide]
+    [setHide, hide, setResultShow, setPosition, setIndex]
   );
 
   const clickResult = (e) => {
     setKeyword(e.target.innerText);
   };
-  
-  const { data, loading } = useHttp(searchCity, "bike");
-  const cityStations = data.filter((station) => station.ServiceType === type);
 
   const filterData = cityStations.filter(
     (item) => item.StationName.Zh_tw.indexOf(keyword) !== -1
@@ -59,7 +66,6 @@ export default function Search({ searchType, searchCity, type }) {
   }, [handleSelect]);
 
   const cityName = getCityName(bikeCityList, searchCity);
-
   return (
     <Container className="position-absolute top-20 start-50 translate-middle">
       <form className="form">
@@ -110,7 +116,6 @@ export default function Search({ searchType, searchCity, type }) {
                 className="form__control fs-2 w-100 p-3 py-2"
                 onChange={handleKeyword}
                 value={keyword}
-                onFocus={handleResultShow}
                 data-node="search"
               />
               <ul
@@ -122,6 +127,13 @@ export default function Search({ searchType, searchCity, type }) {
                       <li
                         key={item.StationUID}
                         className="p-1 ps-3 text-line-1"
+                        data-position={
+                          item.StationPosition.PositionLat +
+                          "-" +
+                          item.StationPosition.PositionLon
+                        }
+                        data-node="showStation"
+                        data-index={item.StationUID}
                       >
                         {item.StationName.Zh_tw.slice(11)}
                       </li>

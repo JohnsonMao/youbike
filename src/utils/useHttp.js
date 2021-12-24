@@ -5,7 +5,7 @@ import { apiLocationType, apiBike, apiBikeStation, apiCyclingShape } from "../ap
 export default function useHttp(
   city = "",
   type = "shape",
-  nearby = null,
+  nearby = [null, null],
   count = 100,
   page = 1
 ) {
@@ -32,7 +32,7 @@ export default function useHttp(
   /* 使用定位 nearby */
   const nearby_param = useMemo(() => {
     return {
-      $spatialFilter: `nearby(${nearby},1000)`
+      $spatialFilter: `nearby(${nearby[0]},${nearby[1]},1000)`
     }
   }, [nearby])
 
@@ -44,13 +44,9 @@ export default function useHttp(
           setData(cityType);
           break;
         case "bike":
-          if (city === 'Nearby' && nearby !== null) {
-            const result = await apiBike(city, nearby_param);
-            setData(result);
-          } else {
-            const {data: stations} = await apiBikeStation(city);
-            setData(stations);
-          }
+          const result = await apiBike('Nearby', nearby_param);
+          const {data: stations} = await apiBikeStation(city);
+          setData([result, stations]);
           break;
         case "shape":
           if (!city) break;
@@ -64,7 +60,7 @@ export default function useHttp(
     } catch (error) {
       setError(true);
     }
-  }, [type, city, nearby, nearby_param, page_param]);
+  }, [type, city, nearby_param, page_param]);
 
   useEffect(() => {
     setData([]);
@@ -81,5 +77,6 @@ export default function useHttp(
       clearTimeout(delay);
     };
   }, [updateData]);
+
   return { loading, error, data };
 }

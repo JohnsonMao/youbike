@@ -11,16 +11,14 @@ import {
   MarkerClusterIcon,
 } from "./Icon";
 import Loading from "../Loading";
-import useHttp from '../../utils/useHttp';
 import "./map.scss";
 
 const StationMarker = ({ item, isActive, map }) => {
   const [refReady, setRefReady] = useState(false);
   let popupRef = useRef(null);
-
   useEffect(() => {
     if (refReady && isActive) {
-      // popupRef.openOn(map);
+      popupRef.openOn(map);
     }
   }, [refReady, isActive, map]);
 
@@ -81,34 +79,32 @@ const StationMarker = ({ item, isActive, map }) => {
 
 export default function Map({
   index,
-  latitude,
-  longitude,
   map,
   setMap,
   zoom,
-  type,
-  nearby
+  position,
+  nearby,
+  nearbyStations,
+  loading
 }) {
 
   useEffect(() => {
     const delay = setTimeout(() => {
-      if (index !== "noIndex") {
-        map?.setView([latitude, longitude], zoom);
+      if (index === "noIndex") {
+        map?.setView(nearby, zoom);
       } else {
-        map?.setView([latitude, longitude], zoom);
+        map?.setView(position, zoom);
       }
     }, 0);
     return () => {
       clearTimeout(delay);
     };
-  }, [map, zoom, index, latitude, longitude]);
-
-  const { data, loading } = useHttp('Nearby', "bike", nearby);
-  const nearbyStations = data.filter((station) => station.ServiceType === type);
-
+  }, [map, zoom, index, position, nearby]);
+  
+  
   return (
     <MapContainer
-      center={[latitude, longitude]}
+      center={position}
       zoom={zoom}
       whenCreated={setMap}
       zoomSnap
@@ -119,7 +115,7 @@ export default function Map({
         attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
       />
       <Marker
-        position={[latitude, longitude]}
+        position={nearby}
         icon={GPS_SVG}
         zIndexOffset={460}
         title="目前的位置"
@@ -132,8 +128,8 @@ export default function Map({
         {loading ? (
           <Loading />
         ) : (
-          nearbyStations.map((item, index) => (
-            <StationMarker key={index} item={item} isActive={index} map={map} />
+          nearbyStations.map((item) => (
+            <StationMarker key={item.StationUID} item={item} isActive={index === item.StationUID} map={map} />
           ))
         )}
       </MarkerClusterGroup>

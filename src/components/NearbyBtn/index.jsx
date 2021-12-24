@@ -2,10 +2,12 @@ import React, { useCallback } from "react";
 
 import { ReactComponent as GPS } from "../../asset/icon/GPS.svg";
 
-export default function NearbyBtn({ latitude, longitude, map, zoom }) {
+export default function NearbyBtn({ nearby, map, zoom, setPosition, setIndex }) {
   const onClick = useCallback(() => {
-    map.setView([latitude, longitude], zoom);
-  }, [map, latitude, longitude, zoom]);
+    setPosition(nearby);
+    setIndex('noIndex');
+    map.setView(nearby, zoom);
+  }, [map, nearby, zoom, setPosition, setIndex]);
 
   return (
     <button

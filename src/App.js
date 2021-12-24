@@ -12,14 +12,19 @@ import { getCityFromType } from "./utils";
 import "./asset/scss/style.scss";
 
 export default function App() {
-  const { error, latitude, longitude } = useGeolocation();
-  const [nearby, setNearby] = useState(latitude + "," + longitude);
+  const { error, latitude, longitude } = useGeolocation({
+    enableHighAccuracy: true,
+    maximumAge: 15000,
+    timeout: 12000,
+  });
+  const [nearby, setNearby] = useState([latitude, longitude]);
   useEffect(() => {
-    setNearby(latitude + "," + longitude);
+    setNearby([latitude, longitude]);
   }, [latitude, longitude]);
-  const { data } = useHttp("", "cityType", nearby);
+  const { data } = useHttp("Nearby", "cityType", nearby);
   const cityCode = data[0]?.AuthorityID;
   const city = getCityFromType(bikeCityList, cityCode);
+  
   return (
     <HashRouter>
       <Routes>
@@ -27,7 +32,12 @@ export default function App() {
         <Route
           path="station"
           element={
-            <Station error={error} latitude={latitude} longitude={longitude} />
+            <Station
+              error={error}
+              latitude={latitude}
+              longitude={longitude}
+              nearby={nearby}
+            />
           }
         />
         <Route path="shape" element={<Shape />} />

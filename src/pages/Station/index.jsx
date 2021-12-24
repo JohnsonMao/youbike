@@ -23,7 +23,7 @@ const menu = [
   },
 ];
 
-export default function Station({ error, latitude, longitude }) {
+export default function Station({ error, latitude, longitude, nearby }) {
   const { search } = useLocation();
   const [map, setMap] = useState(null);
   const handleMap = (e) => setMap(e);
@@ -34,12 +34,22 @@ export default function Station({ error, latitude, longitude }) {
   const searchCity = getSearchVal(search, "city");
 
   const [index, setIndex] = useState("noIndex");
-
-  const [nearby, setNearby] = useState(latitude + "," + longitude);
+  const [position, setPosition] = useState([latitude, longitude]);
+  const handlePosition = (e) => {
+    setPosition(e);
+  };
 
   useEffect(() => {
-    setNearby(latitude + "," + longitude);
+    setPosition([latitude, longitude]);
   }, [latitude, longitude]);
+
+  const { data, loading } = useHttp(searchCity, "bike", position);
+  const nearbyStations = data[0]?.filter(
+    (station) => station.ServiceType === type
+  );
+  const cityStations = data[1]?.filter(
+    (station) => station.ServiceType === type
+  );
 
   return (
     <div className={searchType === "rent" ? null : "dark"}>
@@ -50,16 +60,23 @@ export default function Station({ error, latitude, longitude }) {
         searchParam={searchType}
         searchCity={searchCity}
       />
-      <Search searchType={searchType} searchCity={searchCity} type={type} />
+      <Search
+        searchType={searchType}
+        searchCity={searchCity}
+        cityStations={cityStations}
+        setIndex={setIndex}
+        setPosition={handlePosition}
+      />
       {map ? (
         <NearbyBtn
           map={map}
           zoom={zoom}
-          latitude={latitude}
-          longitude={longitude}
+          nearby={nearby}
+          setPosition={handlePosition}
+          setIndex={setIndex}
         />
       ) : null}
-      {latitude === null ? (
+      {position[0] === null ? (
         <Loading />
       ) : (
         <Map
@@ -67,10 +84,10 @@ export default function Station({ error, latitude, longitude }) {
           map={map}
           index={index}
           zoom={zoom}
-          latitude={latitude}
-          longitude={longitude}
+          position={position}
           nearby={nearby}
-          type={type}
+          nearbyStations={nearbyStations}
+          loading={loading}
         />
       )}
       <FooterNavbar
